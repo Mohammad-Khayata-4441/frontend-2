@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>أمثلة عملية على CSS Advanced Selectors</title>
+    <style>
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            background: #f8f8fc;
+            margin: 0;
+            padding: 40px;
+            color: #23213a;
+        }
+
+        h1,
+        h2 {
+            color: #0054ad;
+        }
+
+        section {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px #0002;
+            padding: 28px 22px 16px 22px;
+            margin-bottom: 36px;
+            direction: rtl;
+        }
+
+        ul.demo-list {
+            padding: 0 18px;
+            margin-bottom: 22px;
+        }
+
+        ul.demo-list li {
+
+            border-radius: 7px;
+
+            margin-bottom: 6px;
+
+            padding: 8px 12px;
+
+            border: 1px solid #d9d9e9;
+
+            transition: 0.25s;
+
+            font-size: 16px;
+
+            position: relative;
+        }
+
+
+        /* أمثلة على selectors */
+        ul.demo-list li:first-child {
+            color: #d30000;
+            font-weight: bold;
+            background: #fff4f0;
+            border-color: #ffe4df;
+        }
+
+        ul.demo-list li:last-child {
+            color: #0066c9;
+            background: #e4f2ff;
+            border-color: #c2e2fa;
+        }
+
+        ul.demo-list li:nth-child(odd) {
+            background: #f3f7ff;
+        }
+
+        ul.demo-list li:nth-child(even) {
+            background: #48a30b;
+        }
+
+        ul.demo-list li:nth-child(3) {
+            border-right: 5px solid #ffe29a;
+        }
+
+        ul.demo-list li:not(.active) {
+            opacity: 0.5;
+        }
+
+        ul.demo-list li.active {
+            background: #eaffd8 !important;
+            border-color: #a7e776;
+            font-weight: bold;
+        }
+
+        /* أمثلة على عناصر مختلفة */
+        .example-types p:first-of-type {
+            border-bottom: 2px dashed orange;
+            padding-bottom: 3px;
+            margin-bottom: 7px;
+            font-weight: bold;
+            background: #fff8eb;
+        }
+
+        .example-types p:last-of-type {
+            color: #148b13;
+            background: #e9ffe8;
+        }
+
+        .example-types p:nth-of-type(2) {
+            background: #cdf3ff;
+            border-right: 4px solid #42c3fa;
+            padding-right: 8px;
+        }
+
+        .example-types span {
+            color: #939;
+            font-weight: bold;
+        }
+
+        /* جدول ملخص */
+        table {
+            border-collapse: collapse;
+            margin: 16px 0 6px 0;
+            width: 100%;
+            font-size: 15px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 8px 10px;
+            text-align: center;
+        }
+
+        th {
+            background: #e8f4fa;
+            color: #194c8d;
+        }
+
+        td {
+            background: #fbfcfe;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>أمثلة عملية على محددات CSS المتقدمة</h1>
+
+    <section>
+        <h2>تجربة عملية على قائمة</h2>
+
+
+
+        <ul class="demo-list">
+            <li>عنصر القائمة الأول (first-child)</li>
+            <li>عنصر القائمة الثاني</li>
+            <li>عنصر القائمة الثالث (nth-child(3))</li>
+            <li class="active">عنصر نشط (active) - يستثنى من تأثير not()</li>
+            <li>عنصر القائمة الخامس (last-child)</li>
+        </ul>
+
+
+
+        <ul>
+            <li><b>:first-child</b> ← العنصر الأول ضمن الأب</li>
+            <li><b>:last-child</b> ← العنصر الأخير ضمن الأب</li>
+            <li><b>:nth-child(n)</b> ← العنصر رقم n (odd/ even مدعومة)</li>
+            <li><b>:not(selector)</b> ← استثناء عناصر من القاعدة</li>
+        </ul>
+    </section>
+
+    <section class="example-types">
+        <h2>تجربة على أنواع عناصر مختلفة</h2>
+        <p>هذه أول فقرة (first-of-type)</p>
+        <span>هذا span بين الفقرات</span>
+        <p>هذه الفقرة الثانية (nth-of-type(2))</p>
+        <p>هذه الفقرة الثالثة (last-of-type)</p>
+        <ul>
+            <li><b>:first-of-type</b> ← أول عنصر من هذا النوع ضمن الأب</li>
+            <li><b>:last-of-type</b> ← آخر عنصر من هذا النوع ضمن الأب</li>
+            <li><b>:nth-of-type(n)</b> ← العنصر رقم n من نفس النوع</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>جدول تلخيصي سريع</h2>
+        <table>
+            <tr>
+                <th>المحدد</th>
+                <th>الوصف</th>
+                <th>مثال عملي</th>
+            </tr>
+            <tr>
+                <td>:first-child</td>
+                <td>أول ابن ضمن الأب</td>
+                <td>li:first-child</td>
+            </tr>
+            <tr>
+                <td>:last-child</td>
+                <td>آخر ابن ضمن الأب</td>
+                <td>li:last-child</td>
+            </tr>
+            <tr>
+                <td>:first-of-type</td>
+                <td>أول ابن من نفس النوع ضمن الأب</td>
+                <td>p:first-of-type</td>
+            </tr>
+            <tr>
+                <td>:last-of-type</td>
+                <td>آخر ابن من نفس النوع ضمن الأب</td>
+                <td>p:last-of-type</td>
+            </tr>
+            <tr>
+                <td>:nth-child(n)</td>
+                <td>الإبن رقم n ضمن الأب</td>
+                <td>li:nth-child(2)</td>
+            </tr>
+            <tr>
+                <td>:nth-of-type(n)</td>
+                <td>العنصر رقم n من نفس النوع ضمن الأب</td>
+                <td>p:nth-of-type(2)</td>
+            </tr>
+            <tr>
+                <td>:not(selector)</td>
+                <td>يستثني عناصر</td>
+                <td>li:not(.active)</td>
+            </tr>
+        </table>
+    </section>
+
+    <footer style="margin-top:32px;color:#8a8;font-size:15px;">
+        إعداد: ChatGPT &ndash; أمثلة تفاعلية توضح محددات CSS المتقدمة<br>
+        يمكنك التعديل على الكود وتجربة تأثير المحددات بسهولة!
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>أمثلة على transform و pseudo-classes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f6f6;
+            padding: 32px;
+        }
+
+        h2 {
+            color: #1976d2;
+        }
+
+        .example {
+            margin-bottom: 32px;
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px #0001;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background: #1976d2;
+            margin: 12px 0;
+            border-radius: 8px;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .button {
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 36px;
+            font-size: 17px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 8px;
+        }
+
+        .button:focus {
+            border: 2px solid green;
+            background: #1565c0;
+        }
+
+        .button:active {
+            border: 1px solid red;
+
+            background: #0d47a1;
+            transform: scale(0.97);
+        }
+
+        /* .button:hover {
+            background: #2196f3;
+            color: #fff;
+            transform: translateY(-4px) scale(1.07) rotate(-2deg);
+            filter: brightness(1.1);
+        } */
+
+        /* مثال لتأثير البلور عند hover */
+        .blur-img {
+            width: 140px;
+            border-radius: 10px;
+            transition: 2s;
+            filter: blur(3px);
+        }
+
+        .blur-img:hover {
+            filter: blur(0px);
+
+            transform: scale(1.5);
+        }
+
+        /* مثال لنقل الصندوق عند hover */
+        .move-box:hover {
+            transform: translateX(30px);
+            background: #000000;
+        }
+
+        /* مثال لتكبير العنصر عند hover */
+        .scale-box:hover {
+            transform: scale(1.25);
+            background: #43a047;
+        }
+
+        /* مثال لتدوير العنصر عند hover */
+        .rotate-box:hover {
+            /* transform-origin: 10px 10px; */
+            transform: rotate(90deg);
+            background: #f44336;
+        }
+
+        /* مثال لتأثير مع :checked */
+        .switch {
+            width: 40px;
+            height: 22px;
+            border-radius: 11px;
+            background: #bbb;
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 8px;
+            transition: 0.3s;
+        }
+
+        .switch-ball {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #fff;
+            transition: 0.3s;
+        }
+
+        #mycheck:checked+.switch .switch-ball {
+            left: 20px;
+            background: #1976d2;
+        }
+
+        #mycheck:checked+.switch {
+            background: #1976d2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>أمثلة على transform و pseudo-classes</h2>
+
+    <div class="example">
+        <b>1️⃣ مثال على تحريك العنصر (translate) عند hover:</b>
+        <div class="box move-box"></div>
+    </div>
+
+    <div class="example">
+        <b>2️⃣ مثال على تكبير العنصر (scale) عند hover:</b>
+        <div class="box scale-box"></div>
+    </div>
+
+    <div class="example">
+        <b>3️⃣ مثال على تدوير العنصر (rotate) عند hover:</b>
+        <div class="box rotate-box"></div>
+    </div>
+
+    <div class="example">
+        <b>4️⃣ مثال على تأثير Blur عند hover على صورة:</b><br>
+        <img class="blur-img" src="https://media.geeksforgeeks.org/wp-content/uploads/20240529150129/HTTP-.gif"
+            alt="HTTP Example">
+    </div>
+
+    <div class="example">
+        <b>5️⃣ مثال على تأثير :checked في عنصر Checkbox:</b><br>
+        <input type="checkbox" id="mycheck" style="display:none;">
+        <label for="mycheck" class="switch">
+            <span class="switch-ball"></span>
+        </label>
+    </div>
+
+    <div class="example">
+        <b>6️⃣ مثال نهائي يجمع عدة تأثيرات مع pseudo-classes على زر واحد:</b><br>
+        <button class="button">
+            جرّب التفاعل معي
+        </button>
+        <button class="button">
+            جرّب التفاعل معي
+        </button>
+        <button class="button">
+            جرّب التفاعل معي
+        </button>
+        <button class="button">
+            جرّب التفاعل معي
+        </button>
+        <p style="margin-top: 12px; color: #555; font-size: 15px;">
+            - جرّب <b>المرور بالماوس</b> فوق الزر<br>
+            - اضغط مطولاً (active)<br>
+            - اضغط بالتاب أو بالفأرة (focus)
+        </p>
+    </div>
+
+</body>
+
+</html>

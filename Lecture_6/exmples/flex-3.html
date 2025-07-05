@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -25,7 +25,6 @@
             box-shadow: 0 2px 8px #0001;
             padding: 28px 16px;
             max-width: 950px;
-            direction: rtl;
         }
 
         .example-container {
@@ -90,8 +89,12 @@
 
         /* مثال 3: justify-content, align-items */
         .align-ex {
+
+            
             justify-content: space-between;
             align-items: flex-end;
+
+
             height: 140px;
         }
 
@@ -126,15 +129,17 @@
 
         /* مثال 5: flex-grow, flex-shrink, flex */
         .flex-size-ex .item {
-            flex: 2 1;
+            flex-grow: 1;
         }
 
         .flex-size-ex .item2 {
-            flex: 1 1;
+            flex-grow: 1;
         }
 
         .flex-size-ex .item3 {
-            flex: 3 1;
+            flex-grow: 2;
+            /* flex-grow: 0; */
+            /* flex-shrink: 1; */
         }
 
         /* مثال 6: align-self */
@@ -163,7 +168,7 @@
         /* مثال 7: align-content */
         .multirow-ex {
             flex-wrap: wrap;
-            height: 180px;
+            height: 480px;
             align-content: space-between;
         }
     </style>

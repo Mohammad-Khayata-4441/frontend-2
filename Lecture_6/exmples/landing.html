@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>صفحة هبوط بسيطة</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #e3f2fd;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            /* نمنع التمرير الأفقي */
+            overflow-x: hidden;
+        }
+
+        /* ترويسة ثابتة */
+        header {
+            position: relative;
+            background: #1976d2;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 1.7rem;
+            letter-spacing: 1px;
+            z-index: 2;
+            box-shadow: 0 2px 12px #0002;
+        }
+
+        /* الحاوية الرئيسية */
+        .main-content {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 48px 5vw 24px 5vw;
+            min-height: 65vh;
+            position: relative;
+            overflow: visible;
+            /* العناصر قد تخرج قليلاً من الحاوية */
+        }
+
+        /* القسم النصي */
+        .text-section {
+            flex: 1;
+            min-width: 260px;
+            z-index: 1;
+        }
+
+        .title {
+            font-size: 2.2rem;
+            color: #0d47a1;
+            margin-bottom: 18px;
+        }
+
+        .subtitle {
+            color: #1976d2;
+            margin-bottom: 28px;
+        }
+
+        .cta-btn {
+            padding: 14px 36px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 7px;
+            background: #1976d2;
+            color: #fff;
+            cursor: pointer;
+            transition: background .2s;
+            margin-top: 14px;
+            box-shadow: 0 1px 6px #1976d211;
+        }
+
+        .cta-btn:hover {
+            background: #0d47a1;
+        }
+
+        /* القسم الصوري */
+        .image-section {
+            flex: 1;
+            min-width: 220px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .circle-img-bg {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            background: #bbdefb;
+            border-radius: 50%;
+            /* right: -70px;
+            top: -60px; */
+            z-index: 0;
+            /* overflow داخل الصورة لاحقاً */
+            overflow: hidden;
+        }
+
+        .hero-img {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid #fff;
+            box-shadow: 0 4px 16px #1976d244;
+            z-index: 1;
+            /* إذا خرجت الصورة من الحاوية */
+            overflow: hidden;
+        }
+
+        /* دائرة زخرفية صغيرة */
+        .small-deco {
+            position: absolute;
+            /* bottom: 14px;
+            left: -32px; */
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #1976d2aa;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        /* قسم الفوتر */
+        footer {
+            background: #1976d2;
+            color: #fff;
+            text-align: center;
+            padding: 12px 0;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ترويسة ثابتة -->
+    <header>
+        مرحباً بك في موقعنا!
+    </header>
+    <!-- الحاوية الرئيسية -->
+    <div class="main-content">
+        <!-- قسم النص -->
+        <div class="text-section">
+            <div class="title">منصة الحلول البرمجية</div>
+            <div class="subtitle">
+                نقدم حلولاً مبتكرة وسريعة لتطوير أعمالك عبر الويب والتطبيقات.<br>
+                انطلق معنا اليوم نحو النجاح التقني!
+            </div>
+            <button class="cta-btn">جرب الآن مجاناً</button>
+        </div>
+        <!-- قسم الصورة والزخارف -->
+        <div class="image-section">
+            <div class="circle-img-bg"></div>
+            <img class="hero-img"
+                src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=facearea&w=400&q=80"
+                alt="صورة رمزية" />
+            <div class="small-deco"></div>
+        </div>
+    </div>
+    <!-- الفوتر -->
+    <footer>
+        &copy; 2025 جميع الحقوق محفوظة لمنصة الحلول البرمجية
+    </footer>
+</body>
+
+</html>

@@ -28,6 +28,7 @@
 
         .demo-container {
             position: relative;
+
             border: 2px dashed #a4b2b6;
             padding: 30px 20px 70px 20px;
             margin-bottom: 25px;
@@ -58,21 +59,23 @@
 
         .relative-box {
             background: #b0d7ff;
-            /* position: relative; */
-            top: 20px;
-            left: 40px;
+            position: relative;
+            /* right: 10px; */
+            /* top: 20px;
+            left: 40px; */
         }
 
         .absolute-box {
             background: #ffc3b0;
             /* position: absolute; */
-            top: 30px;
-            right: 40px;
+            /* top: 0px; */
+            /* left: 50%; */
+            /* transform: translateX(-100%); */
         }
 
         .fixed-box {
             background: #a0ffa0;
-            /* position: fixed; */
+            position: fixed;
             top: 16px;
             left: 15px;
             z-index: 99;
@@ -80,9 +83,8 @@
 
         .sticky-box {
             background: #ffe29a;
-            /* position: sticky; */
-            top: 0;
-            margin-top: 30px;
+            position: sticky;
+            top: 20px;
         }
 
         /* حاوية لتوضيح inset */
@@ -91,20 +93,20 @@
             background: #e2e2e2;
             min-height: 200px;
             margin-bottom: 24px;
-            padding: 12px;
             border-radius: 10px;
             border: 1px solid #ccc;
         }
 
         .inset-child {
             /* position: absolute; */
+            /* bottom: 0; */
             /* inset: 46px 18px 22px 32px; */
             /* top right bottom left */
             background: #b1ffdf;
             border: 2px dashed #45b09e;
             border-radius: 7px;
             text-align: center;
-            padding-top: 15px;
+            padding: 15px;
             font-weight: bold;
         }
 
@@ -176,7 +178,7 @@
     <section>
         <h2>أنواع position</h2>
         <div class="demo-container">
-            <div class="static-box">static (افتراضي)</div>
+            <div class="static-box">static </div>
             <div class="relative-box">relative</div>
             <div class="absolute-box">absolute</div>
             <div class="sticky-box">sticky</div>
