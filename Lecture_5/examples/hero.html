@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hero Section متقدم مع Navbar</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navbar styles */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #4a90e2;
+            color: white;
+            padding: 15px 40px;
+        }
+
+        nav .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #e0e0e0;
+        }
+
+        /* Hero section styles */
+        .hero {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-evenly;
+            background-color: #f5f5f5;
+            padding: 50px 80px;
+            min-height: 400px;
+        }
+
+        .hero-text {
+            max-width: 50%;
+        }
+
+        .hero-text h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .hero-text button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .hero-text button:hover {
+            background-color: #357abd;
+        }
+
+        .hero-image img {
+            max-width: 400px;
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Responsive for small screens */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
+            }
+
+            .hero-text {
+                max-width: 100%;
+            }
+
+            .hero-image {
+                margin-top: 30px;
+            }
+
+            .hero-image img {
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <header>
+        <nav>
+            <div class="logo">منصتي</div>
+            <ul>
+                <li><a href="#">الرئيسية</a></li>
+                <li><a href="#">خدماتنا</a></li>
+                <li><a href="#">مشاريعنا</a></li>
+                <li><a href="#">اتصل بنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>مرحبًا بكم في منصتنا</h1>
+            <p>نساعدك على تطوير أعمالك الرقمية بسهولة وكفاءة عبر حلول تقنية متكاملة ومبتكرة تناسب جميع احتياجاتك.</p>
+            <button>ابدأ الآن</button>
+        </div>
+        <div class="hero-image">
+            <img src="hero.svg" alt="صورة تعريفية">
+        </div>
+    </section>
+
+</body>
+
+</html>

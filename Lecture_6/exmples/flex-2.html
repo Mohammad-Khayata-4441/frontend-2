@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>شرح خاصية flex للأبناء (Flex Item)</title>
+    <style>
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            margin: 40px;
+            background: #f9f9f9;
+            color: #333;
+        }
+
+        h1,
+        h2 {
+            color: #1976d2;
+        }
+
+        .section {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px #0001;
+            margin-bottom: 40px;
+            padding: 24px;
+        }
+
+        .desc {
+            background: #f2f7fd;
+            padding: 10px 16px;
+            border-right: 4px solid #1976d2;
+            margin-bottom: 18px;
+            border-radius: 8px;
+        }
+
+        .flex-container {
+            display: flex;
+            background: #e3f2fd;
+            border-radius: 8px;
+            padding: 14px;
+            margin-bottom: 16px;
+            gap: 12px;
+        }
+
+        .box {
+            background: #2196f3;
+            color: #fff;
+            padding: 24px 0;
+            text-align: center;
+            border-radius: 7px;
+            font-size: 1.25rem;
+            flex-shrink: 1;
+            min-width: 60px;
+            transition: .3s;
+        }
+
+        .small {
+            padding: 16px 0;
+            font-size: 1rem;
+            background: #42a5f5;
+        }
+
+        code {
+            background: #f2f2f2;
+            color: #d32f2f;
+            border-radius: 3px;
+            padding: 1px 6px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>شرح خاصية <code>flex</code> للأبناء في Flexbox</h1>
+
+    <!-- مثال flex: 1 -->
+    <div class="section">
+        <h2>مثال 1: <code>flex: 1</code> (تقسيم متساوي)</h2>
+        <div class="desc">
+            جميع العناصر تأخذ نفس المساحة المتبقية في السطر (كل عنصر يكبر أو يصغر بالتساوي حسب حجم الحاوية).
+        </div>
+        <div class="flex-container" style="height: 60px;">
+            <div class="box" style="flex: 1;">A</div>
+            <div class="box" style="flex: 1;">B</div>
+            <div class="box" style="flex: 1;">C</div>
+        </div>
+        <code>
+      .box { flex: 1; }
+    </code>
+    </div>
+
+    <!-- مثال flex: 2 و flex: 1 -->
+    <div class="section">
+        <h2>مثال 2: <code>flex: 2</code> و <code>flex: 1</code> (توزيع غير متساوي)</h2>
+        <div class="desc">
+            العنصر الأول يأخذ ضعف المساحة لكل من العنصرين الآخرين.<br>
+            (النسب: A=2، B=1، C=1)
+        </div>
+        <div class="flex-container" style="height: 60px;">
+            <div class="box" style="flex: 2;">A</div>
+            <div class="box" style="flex: 1;">B</div>
+            <div class="box" style="flex: 1;">C</div>
+        </div>
+        <code>
+      .box:first-child { flex: 2; }<br>
+      .box:not(:first-child) { flex: 1; }
+    </code>
+    </div>
+
+    <!-- مثال flex: 1 0 -->
+    <div class="section">
+        <h2>مثال 3: <code>flex: 1 0</code> (ينمو ولا ينكمش)</h2>
+        <div class="desc">
+            العنصر ينمو ليملأ الفراغ لكن لا ينكمش إذا صغرت الحاوية.<br>
+            لاحظ كيف قد يخرج العنصر عن الحاوية إذا لم يكن هناك مساحة كافية.
+        </div>
+        <div class="flex-container" style="width: 300px; height: 60px;">
+            <div class="box" style="flex: 1 0;">A</div>
+            <div class="box small" style="flex: 0 1 60px;">B</div>
+            <div class="box small" style="flex: 0 1 60px;">C</div>
+        </div>
+        <code>
+      .box:first-child { flex: 1 0; }<br>
+      .box:not(:first-child) { flex: 0 1 60px; }
+    </code>
+    </div>
+
+    <!-- مثال flex: 0 1 -->
+    <div class="section">
+        <h2>مثال 4: <code>flex: 0 1</code> (ينكمش ولا ينمو)</h2>
+        <div class="desc">
+            العنصر يبقى بحجمه الأساسي، ينكمش إذا صغرت الحاوية، لكنه لا ينمو أبداً ليملأ الفراغ.
+        </div>
+        <div class="flex-container" style="width: 350px; height: 60px;">
+            <div class="box" style="flex: 0 1 100px;">A</div>
+            <div class="box" style="flex: 0 1 100px;">B</div>
+            <div class="box" style="flex: 0 1 100px;">C</div>
+        </div>
+        <code>
+      .box { flex: 0 1 100px; }
+    </code>
+    </div>
+
+    <!-- مثال flex: 0 0 auto -->
+    <div class="section">
+        <h2>مثال 5: <code>flex: 0 0 auto</code> (حجم ثابت)</h2>
+        <div class="desc">
+            العنصر يبقى دائماً على حجمه الأصلي، لا ينمو ولا ينكمش مهما كان حجم الحاوية.<br>
+            (مفيد لعناصر مثل الأزرار أو الصور التي لا تريدها أن تتغير أبداً)
+        </div>
+        <div class="flex-container" style="width: 350px; height: 60px;">
+            <div class="box" style="flex: 0 0 auto; width: 90px;">A</div>
+            <div class="box" style="flex: 0 0 auto; width: 90px;">B</div>
+            <div class="box" style="flex: 0 0 auto; width: 90px;">C</div>
+        </div>
+        <code>
+      .box { flex: 0 0 auto; width: 90px; }
+    </code>
+    </div>
+
+</body>
+
+</html>

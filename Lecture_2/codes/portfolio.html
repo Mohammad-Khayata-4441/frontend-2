@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>موقعي الشخصي - محمد</title>
+    <!-- تنسيقات CSS بسيطة لتحسين شكل الموقع والجدول -->
+    <style>
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            background: #f7f7fb;
+            margin: 0;
+            direction: rtl;
+        }
+
+
+        /* #title {
+            background-color: gray;
+        } */
+
+        /* .list-item {
+            background-color: gray;
+            margin-bottom: 10px;
+            padding: 15px;
+        } */
+
+        .container {
+            width: 96%;
+            max-width: 600px;
+
+
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 2px 8px #ddd;
+            padding: 32px 18px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            text-align: center;
+            color: #1976d2;
+        }
+
+        img {
+            display: block;
+
+            margin: 0 auto 18px;
+            border-radius: 50%;
+
+            /* width: 200px; */
+            width: 120px;
+            height: 120px;
+            /* object-fit: contain; */
+
+            /* border: 3px dashed #1976d2; */
+            border: 3px solid #1976d2;
+        }
+
+        .social-links {
+            margin: 0 7px;
+            color: #1976d2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #f6fbfd;
+        }
+
+        th,
+        td {
+            border: 1px solid #b0bec5;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        th {
+            background: #1976d2;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background: #e3f2fd;
+        }
+
+        form {
+            background: #e8f0fe;
+            padding: 14px 8px;
+            border-radius: 7px;
+            margin-top: 14px;
+        }
+
+        label {
+            display: block;
+            margin: 8px 0 3px;
+        }
+
+        input,
+        textarea,
+        button {
+            width: 100%;
+            margin-bottom: 7px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #b0bec5;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #155fa0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- العنوان الرئيسي للموقع -->
+
+        <div id="title">
+
+            <h1>محمد خياطة</h1>
+            <h2>مطور ويب</h2>
+        </div>
+        <!-- صورة شخصية أو رمزية -->
+        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="صورتي الشخصية">
+
+        <!-- نبذة تعريفية مختصرة -->
+        <p>
+            أنا مطور ويب مبتدئ أتعلم حالياً تقنيات تطوير الويب، وأسعى لتطوير مهاراتي في HTML و CSS و JavaScript. أحب
+            البرمجة وحل المشكلات وبناء المواقع المفيدة.
+        </p>
+    </div>
+
+
+
+    <hr>
+
+    <div>
+
+        <!-- قسم معلومات التواصل -->
+        <h2>معلومات التواصل</h2>
+        <ul>
+            <li class="list-item">📧 الإيميل: example@gmail.com</li>
+            <li class="list-item">📱 الهاتف: 0999999999</li>
+        </ul>
+    </div>
+    <hr>
+    <!-- روابط السوشال ميديا -->
+
+
+    <div>
+        <h3>تابعني على السوشال ميديا:</h3>
+        <div class="social-links">
+            <a href="https://facebook.com" target="_blank">فيسبوك</a>
+            <a href="https://instagram.com" target="_blank">إنستغرام</a>
+            <a href="https://linkedin.com" target="_blank">لينكدإن</a>
+        </div>
+    </div>
+    <hr>
+    <!-- جدول المهارات بشكل محسّن -->
+    <div>
+        <h2>مهاراتي</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>المهارة</th>
+                    <th>المستوى</th>
+                    <th>ملاحظات</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>HTML</td>
+                    <td>مبتدئ</td>
+                    <td>فهم أساسيات الهيكل</td>
+                </tr>
+                <tr>
+                    <td>CSS</td>
+                    <td>أساسي</td>
+                    <td>تطبيق تنسيقات بسيطة</td>
+                </tr>
+                <tr>
+                    <td>JavaScript</td>
+                    <td>جاري التعلم</td>
+                    <td>لم أطبق مشاريع بعد</td>
+                </tr>
+                <tr>
+                    <td>Git</td>
+                    <td>أساسي</td>
+                    <td>أعرف أوامر الحفظ والرفع</td>
+                </tr>
+                <tr>
+                    <td>التصميم</td>
+                    <td>بسيط</td>
+                    <td>أستخدم Canva أحياناً</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    <!-- نموذج التواصل (فورم) -->
+    <div>
+        <h2>راسلني</h2>
+        <form>
+            <!-- حقل الاسم -->
+            <label for="name">الاسم:</label>
+            <input type="text" id="name" name="name" required>
+            <br>
+            <!-- حقل الإيميل -->
+            <label for="email">الإيميل:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+
+            <!-- حقل الرسالة -->
+            <label for="message">الرسالة:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            <br>
+
+            <!-- زر الإرسال -->
+            <button type="submit">إرسال</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

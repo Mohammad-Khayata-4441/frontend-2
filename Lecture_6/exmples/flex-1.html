@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>أمثلة Flexbox متقدمة</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 32px;
+            background: #fafafa;
+            direction: rtl;
+        }
+
+        .demo-section {
+            margin-bottom: 48px;
+            border: 2px dashed #ccc;
+            padding: 24px;
+            background: #fff;
+        }
+
+        .flex-container {
+            display: flex;
+            gap: 16px;
+            padding: 16px;
+            background: #e3e8f1;
+            margin-bottom: 12px;
+            border-radius: 8px;
+        }
+
+        .flex-item {
+            background: #007bff;
+            color: white;
+            padding: 24px;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: bold;
+            min-width: 80px;
+        }
+
+        /* Demo: توسيط أفقي وعمودي */
+        .center-demo {
+            height: 180px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Demo: Wrap */
+        .wrap-demo {
+            flex-wrap: wrap;
+        }
+
+        /* Demo: Different flex-grow */
+        .grow-demo .flex-item:nth-child(1) {
+            flex: 1;
+        }
+
+        .grow-demo .flex-item:nth-child(2) {
+            flex: 2;
+        }
+
+        .grow-demo .flex-item:nth-child(3) {
+            flex: 3;
+        }
+
+        /* Demo: Order */
+        .order-demo .flex-item:nth-child(1) {
+            order: 3;
+        }
+
+        .order-demo .flex-item:nth-child(2) {
+            order: 2;
+        }
+
+        .order-demo .flex-item:nth-child(3) {
+            order: 1;
+        }
+
+        /* Demo: align-self */
+        .alignself-demo {
+            height: 150px;
+        }
+
+        .alignself-demo .flex-item:nth-child(1) {
+            align-self: flex-start;
+        }
+
+        .alignself-demo .flex-item:nth-child(2) {
+            align-self: center;
+        }
+
+        .alignself-demo .flex-item:nth-child(3) {
+            align-self: flex-end;
+        }
+
+        /* Demo: Responsive menu */
+        .navbar {
+            display: flex;
+            background: #2c3e50;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 28px;
+            flex: 1;
+            text-align: center;
+            transition: background .2s;
+        }
+
+        .navbar a:hover {
+            background: #34495e;
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>أمثلة Flexbox متقدمة</h1>
+
+    <div class="demo-section">
+        <h2>1. توسيط العناصر أفقيًا وعموديًا</h2>
+        <div class="flex-container center-demo">
+            <div class="flex-item">وسط</div>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>2. توزيع العناصر بمسافات متساوية (space-between)</h2>
+        <div class="flex-container" style="justify-content: space-between;">
+            <div class="flex-item">واحد</div>
+            <div class="flex-item">اثنان</div>
+            <div class="flex-item">ثلاثة</div>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>3. التفاف العناصر تلقائياً عند صغر الشاشة (flex-wrap)</h2>
+        <div class="flex-container wrap-demo" style="max-width: 400px;">
+            <div class="flex-item">1</div>
+            <div class="flex-item">2</div>
+            <div class="flex-item">3</div>
+            <div class="flex-item">4</div>
+            <div class="flex-item">5</div>
+            <div class="flex-item">6</div>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>4. اختلاف نسبة النمو (flex-grow)</h2>
+        <div class="flex-container grow-demo">
+            <div class="flex-item">flex:1</div>
+            <div class="flex-item">flex:2</div>
+            <div class="flex-item">flex:3</div>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>5. تغيير ترتيب العناصر (order)</h2>
+        <div class="flex-container order-demo">
+            <div class="flex-item">أ</div>
+            <div class="flex-item">ب</div>
+            <div class="flex-item">ج</div>
+        </div>
+        <small>تم تغيير ترتيب العناصر باستخدام خاصية <b>order</b></small>
+    </div>
+
+    <div class="demo-section">
+        <h2>6. محاذاة عناصر منفردة (align-self)</h2>
+        <div class="flex-container alignself-demo">
+            <div class="flex-item">start</div>
+            <div class="flex-item">center</div>
+            <div class="flex-item">end</div>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>7. قائمة تنقل مرنة (Responsive Navbar)</h2>
+        <nav class="navbar">
+            <a href="#">الرئيسية</a>
+            <a href="#">الخدمات</a>
+            <a href="#">من نحن</a>
+            <a href="#">اتصل بنا</a>
+        </nav>
+        <small>تتغير القائمة تلقائيًا في الشاشات الصغيرة لتصبح عمودية</small>
+    </div>
+
+</body>
+
+</html>

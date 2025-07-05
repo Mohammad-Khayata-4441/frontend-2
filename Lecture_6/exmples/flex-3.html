@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>أمثلة متقدمة على Flexbox</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f8fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            color: #1976d2;
+            margin-top: 48px;
+            text-align: right;
+        }
+
+        section {
+            background: #fff;
+            margin: 32px auto;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px #0001;
+            padding: 28px 16px;
+            max-width: 950px;
+            direction: rtl;
+        }
+
+        .example-container {
+            display: flex;
+            gap: 16px;
+            margin-top: 18px;
+            margin-bottom: 24px;
+            border: 1px dashed #b3c7e6;
+            background: #f1f7ff;
+            padding: 20px;
+            border-radius: 12px;
+            min-height: 100px;
+            flex-wrap: wrap;
+        }
+
+        .item {
+            background: #1565c0;
+            color: #fff;
+            padding: 22px 32px;
+            border-radius: 10px;
+            font-size: 1.08rem;
+            min-width: 100px;
+            text-align: center;
+            margin: 0;
+            transition: all .25s;
+        }
+
+        .item2 {
+            background: #ef6c00;
+        }
+
+        .item3 {
+            background: #00bfae;
+        }
+
+        .item4 {
+            background: #e91e63;
+        }
+
+        .item5 {
+            background: #455a64;
+        }
+
+        /* مثال 1: flex-direction */
+        .flex-row {
+            flex-direction: row;
+        }
+
+        .flex-column {
+            flex-direction: column;
+            max-width: 240px;
+        }
+
+        /* مثال 2: flex-wrap */
+        .long-items .item,
+        .long-items .item2,
+        .long-items .item3,
+        .long-items .item4,
+        .long-items .item5 {
+            min-width: 160px;
+        }
+
+        /* مثال 3: justify-content, align-items */
+        .align-ex {
+            justify-content: space-between;
+            align-items: flex-end;
+            height: 140px;
+        }
+
+        .align-ex .item {
+            height: 60px;
+        }
+
+        .align-ex .item2 {
+            height: 100px;
+        }
+
+        .align-ex .item3 {
+            height: 40px;
+        }
+
+        /* مثال 4: order */
+        .order-ex .item {
+            order: 3;
+        }
+
+        .order-ex .item2 {
+            order: 1;
+        }
+
+        .order-ex .item3 {
+            order: 4;
+        }
+
+        .order-ex .item4 {
+            order: 2;
+        }
+
+        /* مثال 5: flex-grow, flex-shrink, flex */
+        .flex-size-ex .item {
+            flex: 2 1;
+        }
+
+        .flex-size-ex .item2 {
+            flex: 1 1;
+        }
+
+        .flex-size-ex .item3 {
+            flex: 3 1;
+        }
+
+        /* مثال 6: align-self */
+        .align-self-ex {
+            align-items: center;
+            height: 120px;
+        }
+
+        .align-self-ex .item {
+            align-self: flex-end;
+        }
+
+        .align-self-ex .item2 {
+            align-self: center;
+        }
+
+        .align-self-ex .item3 {
+            align-self: flex-start;
+        }
+
+        .align-self-ex .item4 {
+            align-self: stretch;
+            height: auto;
+        }
+
+        /* مثال 7: align-content */
+        .multirow-ex {
+            flex-wrap: wrap;
+            height: 180px;
+            align-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- مثال 1: flex-direction والاتجاهات -->
+    <section>
+        <h2>مثال 1: التحكم في الاتجاه (flex-direction)</h2>
+        <div class="example-container flex-row">
+            <div class="item">1</div>
+            <div class="item item2">2</div>
+            <div class="item item3">3</div>
+            <div class="item item4">4</div>
+        </div>
+        <div class="example-container flex-column">
+            <div class="item">A</div>
+            <div class="item item2">B</div>
+            <div class="item item3">C</div>
+        </div>
+        <!-- شرح مختصر:
+      flex-direction يحدد اتجاه توزيع العناصر: أفقي (row) أو عمودي (column)
+    -->
+    </section>
+
+    <!-- مثال 2: التفاف العناصر (flex-wrap) -->
+    <section>
+        <h2>مثال 2: التفاف العناصر (flex-wrap)</h2>
+        <div class="example-container long-items">
+            <div class="item">عنصر طويل 1</div>
+            <div class="item item2">عنصر طويل 2</div>
+            <div class="item item3">عنصر طويل 3</div>
+            <div class="item item4">عنصر طويل 4</div>
+            <div class="item item5">عنصر طويل 5</div>
+        </div>
+        <!-- شرح:
+      flex-wrap يسمح للعناصر بالانتقال لسطر جديد عند امتلاء السطر الأول
+    -->
+    </section>
+
+    <!-- مثال 3: توزيع ومحاذاة العناصر (justify-content, align-items, align-content) -->
+    <section>
+        <h2>مثال 3: توزيع ومحاذاة العناصر</h2>
+        <div class="example-container align-ex">
+            <div class="item">1<br>أسفل</div>
+            <div class="item item2">2<br>أسفل</div>
+            <div class="item item3">3<br>أسفل</div>
+        </div>
+        <!-- شرح:
+      justify-content: space-between  => توزيع أفقي مع فراغات بين العناصر
+      align-items: flex-end           => محاذاة العناصر أسفل الحاوية
+    -->
+    </section>
+
+    <!-- مثال 4: تغيير ترتيب العناصر (order) -->
+    <section>
+        <h2>مثال 4: تغيير ترتيب العناصر (order)</h2>
+        <div class="example-container order-ex">
+            <div class="item">1<br>// order:3</div>
+            <div class="item item2">2<br>// order:1</div>
+            <div class="item item3">3<br>// order:4</div>
+            <div class="item item4">4<br>// order:2</div>
+        </div>
+        <!-- شرح:
+      order يغير ترتيب العنصر بالنسبة للبقية، بغض النظر عن ترتيب الكود في HTML
+    -->
+    </section>
+
+    <!-- مثال 5: التحكم في حجم كل عنصر (flex-grow, flex-shrink, flex-basis, flex) -->
+    <section>
+        <h2>مثال 5: التحكم في حجم العناصر (flex)</h2>
+        <div class="example-container flex-size-ex">
+            <div class="item">1<br>// flex:2 1 </div>
+            <div class="item item2">2<br>// flex:1 1 </div>
+            <div class="item item3">3<br>// flex:3 1 </div>
+        </div>
+        <!-- شرح:
+      flex = grow shrink basis
+      flex:3 1 100px => يكبر 3 أضعاف في الفراغ المتاح
+      flex-basis = حجم ابتدائي
+    -->
+    </section>
+
+    <!-- مثال 6: محاذاة عنصر معين (align-self) -->
+    <section>
+        <h2>مثال 6: محاذاة عنصر معين بشكل منفرد (align-self)</h2>
+        <div class="example-container align-self-ex">
+            <div class="item">أسفل</div>
+            <div class="item item2">وسط</div>
+            <div class="item item3">أعلى</div>
+            <div class="item item4">ملء العمود</div>
+        </div>
+        <!-- شرح:
+      align-self يسمح لك بمحاذاة أي ابن بشكل منفصل عن بقية العناصر
+    -->
+    </section>
+
+    <!-- مثال 7: سطرين من العناصر (align-content) -->
+    <section>
+        <h2>مثال 7: توزيع السطور (align-content) في عدة صفوف</h2>
+        <div class="example-container multirow-ex">
+            <div class="item">1</div>
+            <div class="item item2">2</div>
+            <div class="item item3">3</div>
+            <div class="item item4">4</div>
+            <div class="item item5">5</div>
+            <div class="item">6</div>
+        </div>
+        <!-- شرح:
+      align-content يتحكم بتوزيع صفوف العناصر عندما يكون هناك أكثر من صف
+    -->
+    </section>
+
+</body>
+
+</html>

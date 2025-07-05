@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>شرح display في CSS - أمثلة أساسية</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8fafd;
+            padding: 30px;
+            color: #222;
+        }
+
+        h1 {
+            color: #4a90e2;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #357abd;
+            margin-top: 40px;
+        }
+
+        .example-block {
+            background: #ececec;
+            padding: 12px 18px;
+            margin-bottom: 12px;
+            border-radius: 7px;
+            border: 1px solid #e0e0e0;
+            width: 350px;
+            /* مثال لتوضيح البلوك */
+        }
+
+        .example-inline {
+            background: #ffd700;
+            padding: 5px 10px;
+            border-radius: 7px;
+            margin-right: 8px;
+            /* مثال لتوضيح الانلاين */
+        }
+
+        .example-inline-block {
+            display: inline-block;
+            width: 120px;
+            background: #b2ff59;
+            text-align: center;
+            padding: 8px;
+            margin-right: 8px;
+            border-radius: 7px;
+            /* مثال لتوضيح الانلاين بلوك */
+        }
+
+        .flex-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .flex-item1,
+        .flex-item2 {
+            background: #4a90e2;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+        }
+
+        .flex-item2 {
+            background: #50e3c2;
+        }
+
+        .hidden-example {
+            background: #ffbaba;
+            padding: 10px;
+            border-radius: 7px;
+            margin-top: 10px;
+        }
+
+        .d-none {
+            display: none;
+        }
+
+        .note {
+            color: #a88e00;
+            font-size: 15px;
+            margin-bottom: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>شرح display في CSS - أمثلة أساسية</h1>
+
+    <!-- مثال display: block -->
+    <h2>1️⃣ display: block</h2>
+    <div class="example-block">
+        هذا عنصر block<br>
+        يأخذ كامل عرض السطر ويبدأ بسطر جديد.
+    </div>
+    <div class="note">
+        &larr; مثال عملي: <code>&lt;div&gt;</code> أو <code>&lt;p&gt;</code>
+    </div>
+
+    <!-- مثال display: inline -->
+    <h2>2️⃣ display: inline</h2>
+    <span class="example-inline">عنصر Inline 1</span>
+    <span class="example-inline">عنصر Inline 2</span>
+    <span class="example-inline">عنصر Inline 3</span>
+    <div class="note">
+        &larr; كل عنصر يظهر بجانب الآخر مباشرة ولا يبدأ من سطر جديد.<br>
+        <code>&lt;span&gt;</code> أو <code>&lt;a&gt;</code>
+    </div>
+
+    <!-- مثال display: inline-block -->
+    <h2>3️⃣ display: inline-block</h2>
+    <span class="example-inline-block">Inline-Block 1</span>
+    <span class="example-inline-block">Inline-Block 2</span>
+    <span class="example-inline-block">Inline-Block 3</span>
+    <div class="note">
+        &larr; تظهر بجانب بعضها (مثل inline)،<br>
+        ويمكن تحديد العرض والارتفاع (مثل block).<br>
+        مفيد للأزرار والقوائم الأفقية.
+    </div>
+
+    <!-- مثال display: flex -->
+    <h2>4️⃣ display: flex</h2>
+    <div class="flex-container">
+        <div class="flex-item1">Flex Item 1</div>
+        <div class="flex-item2">Flex Item 2</div>
+    </div>
+    <div class="note">
+        &larr; كل عنصر (flex item) يتوزع تلقائيًا بشكل مرن داخل الحاوية.<br>
+        مفيد جداً لبناء layouts احترافية.
+    </div>
+
+    <!-- مثال display: none -->
+    <h2>5️⃣ display: none</h2>
+    <div class="hidden-example">
+        هذا العنصر ظاهر الآن.
+    </div>
+    <div class="hidden-example d-none">
+        هذا العنصر مخفي باستخدام <b>display: none</b>.
+    </div>
+    <div class="note">
+        &larr; العناصر التي تستخدم <code>display: none</code> لا تظهر أبداً ولا تشغل أي مساحة في الصفحة.
+    </div>
+
+</body>
+
+</html>
