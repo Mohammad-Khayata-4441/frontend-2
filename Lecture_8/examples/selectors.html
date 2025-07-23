@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>شرح أهم محددات (Selectors) CSS مع أمثلة تطبيقية</title>
+    <link href="https://fonts.googleapis.com/css?family=Almarai&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Almarai', Arial, sans-serif;
+            background: #f8fafc;
+            color: #21243d;
+            margin: 0;
+            padding: 0 0 60px 0;
+            line-height: 1.9;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #1976d2;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 24px 0 16px 0;
+        }
+
+        section {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 10px #0001;
+            margin: 32px auto;
+            padding: 28px 20px;
+            max-width: 860px;
+        }
+
+        code,
+        pre {
+            background: #f5f7fa;
+            border-radius: 8px;
+            font-size: 1rem;
+            padding: 2px 5px;
+            font-family: 'Fira Mono', 'Consolas', monospace;
+            direction: ltr;
+            color: #374151;
+        }
+
+        pre {
+            padding: 13px 15px;
+            overflow-x: auto;
+            margin: 10px 0 0 0;
+            font-size: 1rem;
+        }
+
+        .example {
+            margin: 16px 0 28px 0;
+            padding: 14px 10px;
+            border-radius: 8px;
+            background: #f3f7fa;
+            border: 1px dashed #b8c0ce;
+        }
+
+        .demo-list li {
+            margin-bottom: 7px;
+        }
+
+        .selector-table {
+            border-collapse: collapse;
+            width: 96%;
+            margin: 14px 0;
+        }
+
+        .selector-table th,
+        .selector-table td {
+            border: 1px solid #dde3ec;
+            padding: 8px 12px;
+            text-align: right;
+            background: #fff;
+        }
+
+        .selector-table th {
+            background: #b7e2ff;
+            font-weight: bold;
+        }
+
+        .highlight {
+            background: #1976d2;
+            color: #fff;
+            border-radius: 4px;
+            padding: 2px 6px;
+            margin: 0 2px;
+        }
+
+        /* أمثلة عملية */
+        /* النوع */
+        .demo1 {
+            color: #1976d2;
+        }
+
+        /* معرف */
+        #demo2 {
+            background: #d1f7c4;
+            padding: 2px 8px;
+        }
+
+        /* الكلاس */
+        .demo3 {
+            background: #fffbe7;
+            color: #f08b20;
+            padding: 2px 8px;
+        }
+
+        /* محدد الكل */
+        .demo4 * {
+            color: #e93323 !important;
+        }
+
+        /* عنصر داخل عنصر */
+        .container-demo p {
+            background: #e0f7fa;
+        }
+
+        /* عنصر ابن مباشر */
+        .container-demo>span {
+            background: #ffe7e7;
+        }
+
+        /* عنصر بجانب عنصر */
+        .demo5+span {
+            background: #d7eeff;
+        }
+
+        /* عنصر بعد عنصر */
+        .demo6~b {
+            background: #d9f9d7;
+        }
+
+        /* attribute selector */
+        a[target="_blank"] {
+            color: #1976d2;
+            font-weight: bold;
+        }
+
+        input[type="password"] {
+            border: 2px solid #ff5a36;
+        }
+
+        /* pseudo-classes */
+        .demo7 li:first-child {
+            color: #1976d2;
+            font-weight: bold;
+        }
+
+        .demo7 li:last-child {
+            color: #d7263d;
+        }
+
+        .demo7 li:nth-child(2) {
+            background: #fff3c4;
+        }
+
+        .demo8:hover {
+            background: #d1f7c4;
+        }
+
+        .demo8:active {
+            background: #ffd1d1;
+        }
+
+        .demo9:focus {
+            outline: 2px solid #1976d2;
+        }
+
+        /* pseudo-element */
+        .demo10::before {
+            content: "🔥";
+            margin-left: 7px;
+            color: #d7263d;
+        }
+
+        .demo10::after {
+            content: "⭐";
+            margin-right: 7px;
+            color: #ffd600;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>أهم محددات CSS مع شرح وأمثلة</h1>
+    <section>
+        <h2>1️⃣ محددات العناصر (Type/Element Selector)</h2>
+        <p>يستخدم لتطبيق ستايل على جميع عناصر HTML من نوع معين.</p>
+        <div class="example">
+            <p class="demo1">هذا مثال على محدد العنصر <code>p</code> (كل الفقرات ستكون باللون الأزرق).</p>
+            <pre><code>p { color: #1976d2; }</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>2️⃣ محدد المعرف (ID Selector)</h2>
+        <p>يستخدم لتطبيق ستايل على عنصر له <b>معرف (id)</b> معين (يجب أن يكون فريدًا بالصفحة).</p>
+        <div class="example">
+            <div id="demo2">مثال على معرف (id="demo2")</div>
+            <pre><code>#demo2 {
+  background: #d1f7c4;
+}</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>3️⃣ محدد الصنف (Class Selector)</h2>
+        <p>يستخدم لتطبيق ستايل على جميع العناصر التي تملك نفس الكلاس.</p>
+        <div class="example">
+            <span class="demo3">مثال على كلاس (class="demo3")</span>
+            <pre><code>.demo3 {
+  background: #fffbe7;
+  color: #f08b20;
+}</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>4️⃣ محدد الكل <code>*</code> (Universal Selector)</h2>
+        <p>يطبّق النمط على <b>جميع العناصر</b> في نطاقه.</p>
+        <div class="example demo4">
+            <b>مثال: كل العناصر حمراء!</b>
+            <ul>
+                <li>عنصر قائمة</li>
+                <li>عنصر آخر</li>
+            </ul>
+            <pre><code>* {
+  color: #e93323;
+}</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>5️⃣ محدد عنصر داخل عنصر (Descendant Selector)</h2>
+        <p>تحديد جميع العناصر داخل عنصر آخر (وليس بالضرورة أبناء مباشرين).</p>
+        <div class="example container-demo">
+            <div>
+                <p>هذا داخل الديف (سيأخذ خلفية زرقاء باهتة)</p>
+                <span>هذا عنصر span (لن يتأثر)</span>
+            </div>
+            <pre><code>.container-demo p {
+  background: #e0f7fa;
+}</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>6️⃣ محدد الابن المباشر <code>&gt;</code> (Child Selector)</h2>
+        <p>يطبّق النمط فقط على العناصر التي هي أبناء مباشرين لعنصر ما.</p>
+        <div class="example container-demo">
+            <span>ابن مباشر (سيأخذ خلفية وردية باهتة)</span>
+            <div>
+                <span>ابن غير مباشر (لن يتأثر)</span>
+            </div>
+            <pre><code>.container-demo > span {
+  background: #ffe7e7;
+}</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>7️⃣ محدد العنصر المجاور <code>+</code> (Adjacent Sibling Selector)</h2>
+        <p>يستهدف العنصر الذي يأتي <b>مباشرة بعد</b> عنصر آخر.</p>
+        <div class="example">
+            <b class="demo5">أول عنصر</b>
+            <span>العنصر المجاور (سيأخذ خلفية زرقاء فاتحة)</span>
+            <pre><code>.demo5 + span {
+  background: #d7eeff;
+}</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>8️⃣ محدد جميع الأشقاء <code>~</code> (General Sibling Selector)</h2>
+        <p>يستهدف جميع الأشقاء من نوع معين بعد عنصر ما (ليس بالضرورة مباشر).</p>
+        <div class="example">
+            <span class="demo6">عنصر أساسي</span>
+            <i>لن يتأثر</i>
+            <b>أخ بعد العنصر (سيأخذ خلفية خضراء باهتة)</b>
+            <b>أخ آخر (سيأخذ أيضًا خلفية)</b>
+            <pre><code>.demo6 ~ b {
+  background: #d9f9d7;
+}</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>9️⃣ محدد السمات (Attribute Selector)</h2>
+        <p>يستهدف العناصر بناءً على وجود أو قيمة خاصية (Attribute).</p>
+        <ul>
+            <li><code>a[target="_blank"]</code>: كل الروابط التي تفتح في نافذة جديدة.</li>
+            <li><code>input[type="password"]</code>: كل حقول كلمات السر.</li>
+        </ul>
+        <div class="example">
+            <a href="#" target="_blank">رابط بنمط خاص</a>
+            <br />
+            <input type="password" placeholder="كلمة السر">
+            <pre><code>a[target="_blank"] { color: #1976d2; }
+input[type="password"] { border: 2px solid #ff5a36; }
+</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>🔟 محددات الحالات (Pseudo-classes)</h2>
+        <ul>
+            <li><code>:hover</code>: عند مرور الماوس فوق العنصر.</li>
+            <li><code>:active</code>: عند الضغط عليه.</li>
+            <li><code>:focus</code>: عند التركيز (input/textarea).</li>
+            <li><code>:first-child</code>: أول ابن لعنصر أب.</li>
+            <li><code>:last-child</code>: آخر ابن.</li>
+            <li><code>:nth-child(n)</code>: الابن رقم n.</li>
+        </ul>
+        <div class="example">
+            <button class="demo8">مرّر فوقي (hover)</button>
+            <input class="demo9" placeholder="focus هنا">
+            <ul class="demo7">
+                <li>عنصر 1 (first-child)</li>
+                <li>عنصر 2 (nth-child(2))</li>
+                <li>عنصر 3</li>
+                <li>عنصر 4 (last-child)</li>
+            </ul>
+            <pre><code>
+button:hover { background: #d1f7c4; }
+input:focus { outline: 2px solid #1976d2; }
+li:first-child { color: #1976d2; }
+li:last-child { color: #d7263d; }
+li:nth-child(2) { background: #fff3c4; }
+</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>1️⃣1️⃣ محددات العناصر الزائفة (Pseudo-elements)</h2>
+        <ul>
+            <li><code>::before</code>: يضيف محتوى قبل العنصر.</li>
+            <li><code>::after</code>: يضيف محتوى بعد العنصر.</li>
+            <li><code>::first-letter</code>: أول حرف في العنصر.</li>
+            <li><code>::first-line</code>: أول سطر.</li>
+        </ul>
+        <div class="example">
+            <span class="demo10">مثال ::before و ::after</span>
+            <pre><code>
+.demo10::before { content: "🔥"; color: #d7263d; }
+.demo10::after { content: "⭐"; color: #ffd600; }
+</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>💡 جدول ملخص لأهم المحددات</h2>
+        <table class="selector-table">
+            <tr>
+                <th>المحدد</th>
+                <th>الوصف</th>
+                <th>مثال</th>
+            </tr>
+            <tr>
+                <td>p</td>
+                <td>كل عناصر الفقرة</td>
+                <td><code>p { ... }</code></td>
+            </tr>
+            <tr>
+                <td>.class</td>
+                <td>كل عنصر يحمل كلاس معين</td>
+                <td><code>.my-class { ... }</code></td>
+            </tr>
+            <tr>
+                <td>#id</td>
+                <td>عنصر له معرف (id)</td>
+                <td><code>#header { ... }</code></td>
+            </tr>
+            <tr>
+                <td>*</td>
+                <td>كل العناصر</td>
+                <td><code>* { ... }</code></td>
+            </tr>
+            <tr>
+                <td>ul li</td>
+                <td>كل li داخل ul</td>
+                <td><code>ul li { ... }</code></td>
+            </tr>
+            <tr>
+                <td>div &gt; p</td>
+                <td>كل p ابن مباشر لـ div</td>
+                <td><code>div > p { ... }</code></td>
+            </tr>
+            <tr>
+                <td>h2 + p</td>
+                <td>أول p يأتي بعد h2 مباشرة</td>
+                <td><code>h2 + p { ... }</code></td>
+            </tr>
+            <tr>
+                <td>h2 ~ p</td>
+                <td>كل p يأتي بعد h2 (ليس بالضرورة مباشر)</td>
+                <td><code>h2 ~ p { ... }</code></td>
+            </tr>
+            <tr>
+                <td>a[target="_blank"]</td>
+                <td>كل الروابط بخصيصة target=_blank</td>
+                <td><code>a[target="_blank"] { ... }</code></td>
+            </tr>
+            <tr>
+                <td>li:first-child</td>
+                <td>أول عنصر ابن</td>
+                <td><code>li:first-child { ... }</code></td>
+            </tr>
+            <tr>
+                <td>li:nth-child(2)</td>
+                <td>الابن رقم 2</td>
+                <td><code>li:nth-child(2) { ... }</code></td>
+            </tr>
+            <tr>
+                <td>input:focus</td>
+                <td>عنصر مدخل عليه تركيز</td>
+                <td><code>input:focus { ... }</code></td>
+            </tr>
+            <tr>
+                <td>.msg::before</td>
+                <td>إضافة قبل عنصر</td>
+                <td><code>.msg::before { ... }</code></td>
+            </tr>
+            <tr>
+                <td>.msg::after</td>
+                <td>إضافة بعد عنصر</td>
+                <td><code>.msg::after { ... }</code></td>
+            </tr>
+        </table>
+    </section>
+</body>
+
+</html>

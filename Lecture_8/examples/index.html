@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>شرح موسع لبعض خصائص CSS مع أمثلة تطبيقية</title>
+    <link href="https://fonts.googleapis.com/css?family=Almarai&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Almarai', Arial, sans-serif;
+            background: #f8fafc;
+            color: #1a202c;
+            margin: 0;
+            padding: 0 0 64px 0;
+            line-height: 1.9;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #1976d2;
+            margin-top: 32px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 16px;
+        }
+
+        section {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px #0002;
+            margin: 30px auto 30px auto;
+            padding: 28px 22px;
+            max-width: 860px;
+        }
+
+        code,
+        pre {
+            background: #f5f7fa;
+            border-radius: 8px;
+            font-size: 1rem;
+            padding: 3px 6px;
+            font-family: 'Fira Mono', 'Consolas', monospace;
+            direction: ltr;
+            color: #374151;
+        }
+
+        pre {
+            padding: 14px 16px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+
+        .example {
+            margin: 20px 0 32px 0;
+            padding: 18px 15px;
+            border-radius: 10px;
+            background: #f3f7fa;
+            border: 1px dashed #b8c0ce;
+        }
+
+        .flex-row {
+            display: flex;
+            gap: 18px;
+        }
+
+        .w-150 {
+            width: 150px;
+        }
+
+        .mt-2 {
+            margin-top: 8px;
+        }
+
+        .mb-1 {
+            margin-bottom: 8px;
+        }
+
+        .mb-2 {
+            margin-bottom: 20px;
+        }
+
+        .inline {
+            display: inline-block;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .box {
+            width: 180px;
+            height: 90px;
+            margin: 8px 0;
+            border: 3px solid #1976d2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            background: #e3f2fd;
+        }
+
+        .bg-demo {
+            background-color: #ffefc1;
+            background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=300&q=80');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100px;
+            color: #fff;
+            border-radius: 10px;
+            text-shadow: 1px 1px 6px #000a;
+        }
+
+        .gradient-demo {
+            background: linear-gradient(90deg, #36d1c4, #5b86e5);
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .bg-fixed {
+            background-image: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=facearea&w=900&q=80');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            height: 130px;
+            color: #fff;
+            border-radius: 10px;
+            text-shadow: 1px 1px 7px #000a;
+        }
+
+        .cursor-demo {
+            display: inline-block;
+            padding: 9px 18px;
+            border: 2px solid #38b000;
+            background: #f5fff6;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-left: 10px;
+            transition: background 0.18s;
+        }
+
+        .cursor-demo:hover {
+            background: #c2f7c6;
+        }
+
+        .custom-list {
+            list-style-type: square;
+            list-style-position: inside;
+            background: #f1f8e9;
+            border-radius: 8px;
+            padding: 14px 22px;
+        }
+
+        .list-image {
+            list-style-image: url('https://cdn-icons-png.flaticon.com/16/148/148841.png');
+            padding-left: 32px;
+        }
+
+        .before-after {
+            color: #212121;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .before-after::before {
+            content: "⭐ ";
+            color: #ffd600;
+            font-size: 1.2em;
+            margin-left: 6px;
+        }
+
+        .before-after::after {
+            content: " 🎯";
+            color: #6dd47e;
+            font-size: 1.1em;
+            margin-right: 6px;
+        }
+
+        .border-demo {
+            border: 2px solid #1976d2;
+            padding: 11px 0;
+            text-align: center;
+            width: 140px;
+            border-radius: 7px;
+            background: #e3f0ff;
+            margin-bottom: 9px;
+            display: inline-block;
+        }
+
+        .outline-demo {
+            outline: 2px solid #d7263d;
+            padding: 11px 0;
+            text-align: center;
+            width: 140px;
+            border-radius: 7px;
+            background: #ffe3e3;
+            margin-bottom: 9px;
+            display: inline-block;
+        }
+
+        .uppercase {
+            text-transform: uppercase;
+        }
+
+        .lowercase {
+            text-transform: lowercase;
+        }
+
+        .capitalize {
+            text-transform: capitalize;
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+
+        .overline {
+            text-decoration: overline;
+        }
+
+        .line-through {
+            text-decoration: line-through;
+        }
+
+        .box1 {
+            width: 200px;
+            padding: 20px;
+            border: 4px solid #5c51ff;
+            margin-bottom: 14px;
+            box-sizing: content-box;
+            background: #e6eaff;
+        }
+
+        .box2 {
+            width: 200px;
+            padding: 20px;
+            border: 4px solid #5c51ff;
+            margin-bottom: 14px;
+            box-sizing: border-box;
+            background: #e6fbe3;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 97%;
+            margin: 16px auto;
+            background: #fff;
+        }
+
+        th,
+        td {
+            border: 1px solid #dbeafe;
+            padding: 8px 10px;
+            text-align: right;
+        }
+
+        th {
+            background: #b3dafe;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>شرح موسّع لبعض خصائص CSS مع أمثلة تطبيقية</h1>
+
+    <!-- ========== 1. background ========== -->
+    <section>
+        <h2>1️⃣ الخلفية background</h2>
+
+        <h3>background-color</h3>
+        <p>تستخدم لإعطاء لون خلفية لأي عنصر.</p>
+        <div class="example">
+            <div class="box" style="background-color: #ffe3e3;">مثال: background-color: #ffe3e3;</div>
+            <pre><code>div {
+          background-color: #ffe3e3;
+        }</code></pre>
+        </div>
+
+        <h3>background-image</h3>
+        <p>تُستخدم لإضافة صورة كخلفية للعنصر. يمكنك تكرار الصورة أو منع التكرار.</p>
+        <div class="example">
+            <div class="bg-demo center">مثال: صورة خلفية</div>
+            <pre><code>div {
+          background-image: url('bg.jpg');
+          background-repeat: no-repeat;
+          background-size: cover;
+        }</code></pre>
+        </div>
+
+        <h3>background-gradient</h3>
+        <p>إنشاء تدرج لوني كخلفية (خطي أو دائري).</p>
+        <div class="example">
+            <div class="box gradient-demo">تدرج لوني خطي</div>
+            <pre><code>div {
+          background: linear-gradient(90deg, #36d1c4, #5b86e5);
+        }</code></pre>
+        </div>
+
+        <h3>background-attachment</h3>
+        <p>هل تبقى الخلفية ثابتة أم تتحرك مع التمرير؟</p>
+        <div class="example">
+            <div class="bg-fixed center">خلفية ثابتة عند التمرير (fixed)</div>
+            <pre><code>div {
+          background-attachment: fixed;
+        }</code></pre>
+        </div>
+
+        <h3>background-position</h3>
+        <p>تحديد مكان ظهور صورة الخلفية داخل العنصر.</p>
+        <div class="example">
+            <div class="box"
+                style="background:url('https://cdn-icons-png.flaticon.com/128/726/726476.png') no-repeat right bottom #ffe;">
+                خلفية يمين-أسفل
+            </div>
+            <pre><code>div {
+          background-position: right bottom;
+        }</code></pre>
+        </div>
+
+        <h3>background-size</h3>
+        <p>التحكم بحجم صورة الخلفية.</p>
+        <div class="example">
+            <div class="box"
+                style="background:url('https://cdn-icons-png.flaticon.com/128/726/726476.png') no-repeat left center / 40px auto #f1f1ff;">
+                contain / 40px
+            </div>
+            <pre><code>div {
+          background-size: 40px auto;
+        }</code></pre>
+        </div>
+    </section>
+
+    <!-- ========== 2. cursor ========== -->
+    <section>
+        <h2>2️⃣ مؤشر الفأرة cursor</h2>
+        <p>تغيير شكل مؤشر الفأرة عند المرور فوق عنصر.</p>
+        <table>
+            <tr>
+                <th>القيمة</th>
+                <th>الوصف</th>
+                <th>مثال عملي</th>
+            </tr>
+            <tr>
+                <td><code>pointer</code></td>
+                <td>يد، غالبًا للروابط والأزرار</td>
+                <td><span class="cursor-demo" style="cursor:pointer;">pointer</span></td>
+            </tr>
+            <tr>
+                <td><code>default</code></td>
+                <td>السهم الافتراضي</td>
+                <td><span class="cursor-demo" style="cursor:default;">default</span></td>
+            </tr>
+            <tr>
+                <td><code>text</code></td>
+                <td>مؤشر تحرير النصوص</td>
+                <td><span class="cursor-demo" style="cursor:text;">text</span></td>
+            </tr>
+            <tr>
+                <td><code>move</code></td>
+                <td>سهم النقل</td>
+                <td><span class="cursor-demo" style="cursor:move;">move</span></td>
+            </tr>
+            <tr>
+                <td><code>not-allowed</code></td>
+                <td>علامة المنع</td>
+                <td><span class="cursor-demo" style="cursor:not-allowed;">not-allowed</span></td>
+            </tr>
+        </table>
+        <pre><code>button {
+          cursor: pointer;
+        }</code></pre>
+    </section>
+
+    <!-- ========== 3. list-style ========== -->
+    <section>
+        <h2>3️⃣ خصائص القوائم list-style</h2>
+
+        <h3>list-style-type</h3>
+        <p>تغيير شكل نقاط/أرقام القوائم.</p>
+        <div class="example">
+            <ul class="custom-list">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+            </ul>
+            <pre><code>ul {
+          list-style-type: square;
+          list-style-position: inside;
+        }</code></pre>
+        </div>
+
+        <h3>list-style-image</h3>
+        <p>وضع صورة كرمز للقائمة بدل الشكل الافتراضي.</p>
+        <div class="example">
+            <ul class="list-image">
+                <li>مثال صورة 1</li>
+                <li>مثال صورة 2</li>
+            </ul>
+            <pre><code>ul {
+          list-style-image: url('icon.png');
+        }</code></pre>
+        </div>
+    </section>
+
+    <!-- ========== 4. before & after ========== -->
+    <section>
+        <h2>4️⃣ ::before و ::after</h2>
+        <p>
+            pseudo-elements تُستخدم لإضافة محتوى قبل أو بعد العنصر دون تعديل HTML، ويمكنك تزيينها كما تريد.
+        </p>
+        <div class="example">
+            <span class="before-after">هذا نص تجريبي</span>
+            <pre><code>.before-after::before {
+          content: "⭐ ";
+          color: #ffd600;
+        }
+        .before-after::after {
+          content: " 🎯";
+          color: #6dd47e;
+        }</code></pre>
+        </div>
+    </section>
+
+    <!-- ========== 5. outline vs border ========== -->
+    <section>
+        <h2>5️⃣ الفرق بين outline و border</h2>
+        <table>
+            <tr>
+                <th>border</th>
+                <th>outline</th>
+            </tr>
+            <tr>
+                <td>
+                    <span class="border-demo">Border</span>
+                    <pre><code>.border-demo {
+          border: 2px solid #1976d2;
+        }</code></pre>
+                </td>
+                <td>
+                    <span class="outline-demo">Outline</span>
+                    <pre><code>.outline-demo {
+          outline: 2px solid #d7263d;
+        }</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <ul>
+                        <li><b>border</b>: يؤثر على أبعاد العنصر، ويمكن تحديد كل جانب.</li>
+                        <li><b>outline</b>: إطار خارجي لا يؤثر على الأبعاد ولا يمكن تحديد كل جانب منفصل.</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- ========== 6. text-transform & text-decoration ========== -->
+    <section>
+        <h2>6️⃣ text-transform و text-decoration</h2>
+
+        <h3>text-transform</h3>
+        <div class="example">
+            <div class="uppercase mb-1">uppercase: كل الحروف كبيرة</div>
+            <div class="lowercase mb-1">LOWERCASE: كل الحروف صغيرة</div>
+            <div class="capitalize mb-1">capitalize: أول حرف من كل كلمة كبير</div>
+            <pre><code>p {
+          text-transform: uppercase | lowercase | capitalize;
+        }</code></pre>
+        </div>
+
+        <h3>text-decoration</h3>
+        <div class="example">
+            <div class="underline mb-1">underline: خط تحت النص</div>
+            <div class="overline mb-1">overline: خط فوق النص</div>
+            <div class="line-through mb-1">line-through: خط وسط النص</div>
+            <pre><code>p {
+          text-decoration: underline | overline | line-through | none;
+        }</code></pre>
+        </div>
+    </section>
+
+    <!-- ========== 7. box-sizing & box model ========== -->
+    <section>
+        <h2>7️⃣ box-sizing و الصندوق box model</h2>
+        <h3>ما هو الصندوق في CSS؟</h3>
+        <ul>
+            <li><b>content</b>: المحتوى نفسه (نص/صورة...)</li>
+            <li><b>padding</b>: المسافة الداخلية حول المحتوى</li>
+            <li><b>border</b>: إطار يحيط بالبادينج</li>
+            <li><b>margin</b>: المسافة الخارجية خارج الإطار</li>
+        </ul>
+        <div class="example">
+            <pre><code>
+        +------------------------------+
+        |           margin             |
+        |  +------------------------+  |
+        |  |        border          |  |
+        |  |  +------------------+  |  |
+        |  |  |    padding       |  |  |
+        |  |  |  +-----------+   |  |  |
+        |  |  |  | content   |   |  |  |
+        |  |  |  +-----------+   |  |  |
+        |  |  +------------------+  |  |
+        |  +------------------------+  |
+        +------------------------------+
+            </code></pre>
+        </div>
+
+        <h3>box-sizing</h3>
+        <ul>
+            <li><code>content-box</code>: (الوضع الافتراضي) - width/height = للمحتوى فقط.</li>
+            <li><code>border-box</code>: width/height تشمل البادينج والبوردر.</li>
+        </ul>
+        < class="example flex-row">
+            <div>
+                <div class="box1">content-box</div>
+                <pre><code>.box1 {
+          width: 200px;
+          padding: 20px;
+          border: 4px solid #5c51ff;
+          box-sizing: content-box;
+        }</code></pre>
+            </div>
+            <div>
+                <div class="box2">border-box</div>
+                <pre><code>.box2 {
+          width: 200px;
+          padding: 20px;
+          border: 4px solid #5c51ff;
+          box-sizing: border-box;
+        }</code></pre>
+            </div>
+</body>
+
+</html>

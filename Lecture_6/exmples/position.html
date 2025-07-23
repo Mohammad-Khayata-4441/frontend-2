@@ -1,208 +1,234 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <title>شرح عملي: position و overflow في CSS</title>
     <style>
-        body {
-            font-family: Tahoma, Arial, sans-serif;
-            background: #f8f8f8;
-            margin: 0;
-            padding: 40px;
-            color: #222;
-        }
+      body {
+        font-family: Tahoma, Arial, sans-serif;
+        background: #f8f8f8;
+        margin: 0;
+        padding: 40px;
+        color: #222;
+      }
 
-        h1,
-        h2 {
-            color: #2161a6;
-        }
+      h1,
+      h2 {
+        color: #2161a6;
+      }
 
-        section {
-            margin-bottom: 40px;
-            background: #fff;
-            border-radius: 14px;
-            box-shadow: 0 4px 10px #0001;
-            padding: 28px 20px;
-        }
+      section {
+        margin-bottom: 40px;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 4px 10px #0001;
+        padding: 28px 20px;
+      }
 
-        .demo-container {
-            position: relative;
+      .demo-container {
+        position: relative;
 
-            border: 2px dashed #a4b2b6;
-            padding: 30px 20px 70px 20px;
-            margin-bottom: 25px;
-            background: #eef6fb;
-            min-height: 420px;
-            overflow: visible;
-        }
+        border: 2px dashed #a4b2b6;
+        padding: 30px 20px 70px 20px;
+        margin-bottom: 25px;
+        background: #eef6fb;
+        min-height: 420px;
+        overflow: visible;
+      }
 
-        .static-box,
-        .relative-box,
-        .absolute-box,
-        .fixed-box,
-        .sticky-box {
-            width: 110px;
-            height: 55px;
-            line-height: 55px;
-            text-align: center;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            font-weight: bold;
-            position: static;
-            /* يتم استبداله لاحقاً */
-        }
+      .static-box,
+      .relative-box,
+      .absolute-box,
+      .fixed-box,
+      .sticky-box {
+        width: 110px;
+        height: 55px;
+        line-height: 55px;
+        text-align: center;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        font-weight: bold;
+        position: static;
+        /* يتم استبداله لاحقاً */
+      }
 
-        .static-box {
-            background: #b3b3b3;
-        }
+      .static-box {
+        background: #b3b3b3;
+      }
 
-        .relative-box {
-            background: #b0d7ff;
-            position: relative;
-            /* right: 10px; */
-            /* top: 20px;
+      .relative-box {
+        background: #b0d7ff;
+        position: relative;
+        /* right: 10px; */
+        /* top: 20px;
             left: 40px; */
-        }
+      }
 
-        .absolute-box {
-            background: #ffc3b0;
-            /* position: absolute; */
-            /* top: 0px; */
-            /* left: 50%; */
-            /* transform: translateX(-100%); */
-        }
+      .relative-box-1 {
+        background-color: gray;
+        top: 40px;
+        left: 50px;
+        z-index: 0;
+      }
+      .relative-box-2 {
+        z-index: -1;
+        bottom: 40px;
 
-        .fixed-box {
-            background: #a0ffa0;
-            position: fixed;
-            top: 16px;
-            left: 15px;
-            z-index: 99;
-        }
+        /* right: 10px; */
+        /* top: 20px;
+            left: 40px; */
+      }
 
-        .sticky-box {
-            background: #ffe29a;
-            position: sticky;
-            top: 20px;
-        }
+      .absolute-box {
+        background: #ffc3b0;
+        /* position: absolute; */
+        /* top: 0px; */
+        /* left: 50%; */
+        /* transform: translateX(-100%); */
+      }
 
-        /* حاوية لتوضيح inset */
-        .inset-parent {
-            position: relative;
-            background: #e2e2e2;
-            min-height: 200px;
-            margin-bottom: 24px;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-        }
+      .fixed-box {
+        background: #a0ffa0;
+        position: fixed;
+        top: 16px;
+        left: 15px;
+        z-index: 99;
+      }
 
-        .inset-child {
-            /* position: absolute; */
-            /* bottom: 0; */
-            /* inset: 46px 18px 22px 32px; */
-            /* top right bottom left */
-            background: #b1ffdf;
-            border: 2px dashed #45b09e;
-            border-radius: 7px;
-            text-align: center;
-            padding: 15px;
-            font-weight: bold;
-        }
+      .sticky-box {
+        background: #ffe29a;
+        position: sticky;
+        top: 20px;
+      }
 
-        /* overflow examples */
-        .overflow-box {
-            width: 280px;
-            height: 85px;
-            margin: 0 18px 18px 0;
-            padding: 7px;
-            border-radius: 8px;
-            border: 2px solid #666;
-            background: #f5f9ff;
-            display: inline-block;
-            vertical-align: top;
-            font-size: 15px;
-            direction: ltr;
-        }
+      /* حاوية لتوضيح inset */
+      .inset-parent {
+        position: relative;
+        background: #e2e2e2;
+        min-height: 200px;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+      }
 
-        .ov-visible {
-            overflow: visible;
-        }
+      .inset-child {
+        /* position: absolute; */
+        /* bottom: 0; */
+        /* inset: 46px 18px 22px 32px; */
+        /* top right bottom left */
+        background: #b1ffdf;
+        border: 2px dashed #45b09e;
+        border-radius: 7px;
+        text-align: center;
+        padding: 15px;
+        font-weight: bold;
+      }
 
-        .ov-hidden {
-            overflow: hidden;
-        }
+      /* overflow examples */
+      .overflow-box {
+        width: 280px;
+        height: 85px;
+        margin: 0 18px 18px 0;
+        padding: 7px;
+        border-radius: 8px;
+        border: 2px solid #666;
+        background: #f5f9ff;
+        display: inline-block;
+        vertical-align: top;
+        font-size: 15px;
+        direction: ltr;
+      }
 
-        .ov-auto {
-            overflow: auto;
-        }
+      .ov-visible {
+        overflow: visible;
+      }
 
-        .ov-scroll {
-            overflow: scroll;
-        }
+      .ov-hidden {
+        overflow: hidden;
+      }
 
-        .ov-clip {
-            overflow: clip;
-        }
+      .ov-auto {
+        overflow: auto;
+      }
 
-        .long-content {
-            width: 600px;
-            /* أطول من الحاوية لتوضيح overflow */
-            background: linear-gradient(90deg, #6ea4f5 50%, #e7ecfa 100%);
-            color: #274477;
-            padding: 0 8px;
-            border-radius: 4px;
-            font-size: 14px;
-        }
+      .ov-scroll {
+        overflow: scroll;
+      }
 
-        /* لتوضيح الفرق بين overflow-x/y */
-        .overflow-xy-box {
-            width: 170px;
-            height: 65px;
-            border: 2px solid #aa64ca;
-            border-radius: 7px;
-            margin-bottom: 6px;
-            overflow-x: auto;
-            overflow-y: hidden;
-            background: #fcf7ff;
-            padding: 7px;
-            font-size: 14px;
-        }
+      .ov-clip {
+        overflow: clip;
+      }
+
+      .long-content {
+        width: 600px;
+        /* أطول من الحاوية لتوضيح overflow */
+        background: linear-gradient(90deg, #6ea4f5 50%, #e7ecfa 100%);
+        color: #274477;
+        padding: 0 8px;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      /* لتوضيح الفرق بين overflow-x/y */
+      .overflow-xy-box {
+        width: 170px;
+        height: 65px;
+        border: 2px solid #aa64ca;
+        border-radius: 7px;
+        margin-bottom: 6px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        background: #fcf7ff;
+        padding: 7px;
+        font-size: 14px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <h1>شرح عملي: position و overflow في CSS</h1>
 
     <section>
-        <h2>أنواع position</h2>
-        <div class="demo-container">
-            <div class="static-box">static </div>
-            <div class="relative-box">relative</div>
-            <div class="absolute-box">absolute</div>
-            <div class="sticky-box">sticky</div>
-            <!-- ثابتة بالنسبة للنافذة -->
-            <div class="fixed-box">fixed</div>
-        </div>
-        <ul>
-            <li><strong>static:</strong> الوضع الافتراضي، العنصر يبقى في مكانه الطبيعي حسب التدفق.</li>
-            <li><strong>relative:</strong> مكانه الأساسي + يمكنك تحريكه بقيم top/left/right/bottom.</li>
-            <li><strong>absolute:</strong> يُحدد موضعه بالنسبة لأقرب أب يحمل position غير static.</li>
-            <li><strong>fixed:</strong> ثابت بالنسبة للنافذة حتى عند التمرير.</li>
-            <li><strong>sticky:</strong> يبقى عادي حتى التمرير ثم يصبح ثابت في الأعلى (top).</li>
-        </ul>
+      <h2>أنواع position</h2>
+      <div class="demo-container">
+        <div class="static-box">static</div>
+        <div class="relative-box relative-box-1">relative</div>
+        <div class="relative-box relative-box-2">relative2</div>
+        <div class="absolute-box">absolute</div>
+        <div class="sticky-box">sticky</div>
+        <!-- ثابتة بالنسبة للنافذة -->
+        <div class="fixed-box">fixed</div>
+      </div>
+      <ul>
+        <li>
+          <strong>static:</strong> الوضع الافتراضي، العنصر يبقى في مكانه الطبيعي
+          حسب التدفق.
+        </li>
+        <li>
+          <strong>relative:</strong> مكانه الأساسي + يمكنك تحريكه بقيم
+          top/left/right/bottom.
+        </li>
+        <li>
+          <strong>absolute:</strong> يُحدد موضعه بالنسبة لأقرب أب يحمل position
+          غير static.
+        </li>
+        <li><strong>fixed:</strong> ثابت بالنسبة للنافذة حتى عند التمرير.</li>
+        <li>
+          <strong>sticky:</strong> يبقى عادي حتى التمرير ثم يصبح ثابت في الأعلى
+          (top).
+        </li>
+      </ul>
     </section>
 
     <section>
-        <h2>تجربة inset (اختصار top, right, bottom, left)</h2>
-        <div class="inset-parent">
-            <div class="inset-child">
-                inset child
-            </div>
-            <span style="font-size:13px; color:#888">لاحظ حدود العنصر داخل الحاوية الرمادية</span>
-        </div>
-        <pre><code>
+      <h2>تجربة inset (اختصار top, right, bottom, left)</h2>
+      <div class="inset-parent">
+        <div class="inset-child">inset child</div>
+        <span style="font-size: 13px; color: #888"
+          >لاحظ حدود العنصر داخل الحاوية الرمادية</span
+        >
+      </div>
+      <pre><code>
 .inset-child {
   position: absolute;
   inset: 16px 18px 22px 32px;
@@ -211,57 +237,57 @@
     </section>
 
     <section>
-        <h2>شرح overflow وخصائصه</h2>
-        <div>
-            <div class="overflow-box ov-visible">
-                <div class="long-content">
-                    overflow: visible;<br>
-                    نص طويل سيخرج من الصندوق ولن يتم قصه أبداً.
-                </div>
-            </div>
-            <div class="overflow-box ov-hidden">
-                <div class="long-content">
-                    overflow: hidden;<br>
-                    النص الزائد سيختفي!
-                </div>
-            </div>
-            <div class="overflow-box ov-auto">
-                <div class="long-content">
-                    overflow: auto;<br>
-                    ستلاحظ شريط تمرير فقط عند الحاجة.
-                </div>
-            </div>
-            <div class="overflow-box ov-scroll">
-                <div class="long-content">
-                    overflow: scroll;<br>
-                    شريط تمرير ظاهر دائماً حتى لو المحتوى صغير.
-                </div>
-            </div>
-            <div class="overflow-box ov-clip">
-                <div class="long-content">
-                    overflow: clip;<br>
-                    قص فوري للمحتوى بدون أي تمرير.
-                </div>
-            </div>
+      <h2>شرح overflow وخصائصه</h2>
+      <div>
+        <div class="overflow-box ov-visible">
+          <div class="long-content">
+            overflow: visible;<br />
+            نص طويل سيخرج من الصندوق ولن يتم قصه أبداً.
+          </div>
         </div>
-        <ul>
-            <li><strong>visible:</strong> (افتراضي) لا يتم قص المحتوى الزائد.</li>
-            <li><strong>hidden:</strong> إخفاء الجزء الزائد بدون تمرير.</li>
-            <li><strong>auto:</strong> شريط تمرير عند الحاجة فقط.</li>
-            <li><strong>scroll:</strong> شريط تمرير دائمًا حتى لو لم يوجد فائض.</li>
-            <li><strong>clip:</strong> قص المحتوى بدون تمرير.</li>
-        </ul>
+        <div class="overflow-box ov-hidden">
+          <div class="long-content">
+            overflow: hidden;<br />
+            النص الزائد سيختفي!
+          </div>
+        </div>
+        <div class="overflow-box ov-auto">
+          <div class="long-content">
+            overflow: auto;<br />
+            ستلاحظ شريط تمرير فقط عند الحاجة.
+          </div>
+        </div>
+        <div class="overflow-box ov-scroll">
+          <div class="long-content">
+            overflow: scroll;<br />
+            شريط تمرير ظاهر دائماً حتى لو المحتوى صغير.
+          </div>
+        </div>
+        <div class="overflow-box ov-clip">
+          <div class="long-content">
+            overflow: clip;<br />
+            قص فوري للمحتوى بدون أي تمرير.
+          </div>
+        </div>
+      </div>
+      <ul>
+        <li><strong>visible:</strong> (افتراضي) لا يتم قص المحتوى الزائد.</li>
+        <li><strong>hidden:</strong> إخفاء الجزء الزائد بدون تمرير.</li>
+        <li><strong>auto:</strong> شريط تمرير عند الحاجة فقط.</li>
+        <li><strong>scroll:</strong> شريط تمرير دائمًا حتى لو لم يوجد فائض.</li>
+        <li><strong>clip:</strong> قص المحتوى بدون تمرير.</li>
+      </ul>
     </section>
 
     <section>
-        <h2>مثال على overflow-x و overflow-y</h2>
-        <div class="overflow-xy-box">
-            <div style="width:350px;">
-                جملة طويلة بالإنكليزي: This is a long sentence to show <b>overflow-x: auto</b> with <b>overflow-y:
-                    hidden</b>.
-            </div>
+      <h2>مثال على overflow-x و overflow-y</h2>
+      <div class="overflow-xy-box">
+        <div style="width: 350px">
+          جملة طويلة بالإنكليزي: This is a long sentence to show
+          <b>overflow-x: auto</b> with <b>overflow-y: hidden</b>.
         </div>
-        <pre><code>
+      </div>
+      <pre><code>
 .overflow-xy-box {
   overflow-x: auto;
   overflow-y: hidden;
@@ -269,9 +295,8 @@
     </code></pre>
     </section>
 
-    <footer style="margin-top:30px;color:#888;font-size:14px;">
-        أعدّ بواسطة ChatGPT – أمثلة عملية لتوضيح position و overflow في CSS
+    <footer style="margin-top: 30px; color: #888; font-size: 14px">
+      أعدّ بواسطة ChatGPT – أمثلة عملية لتوضيح position و overflow في CSS
     </footer>
-</body>
-
+  </body>
 </html>

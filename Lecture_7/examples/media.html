@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>أمثلة على Media Query في CSS</title>
+    <style>
+      body {
+        font-family: Tahoma, Arial, sans-serif;
+        background: #f7fafd;
+        margin: 0;
+        padding: 32px;
+      }
+      h1 {
+        color: #1e88e5;
+      }
+      section {
+        background: #fff;
+        margin-bottom: 36px;
+        border-radius: 10px;
+        padding: 24px;
+        box-shadow: 0 2px 10px #0001;
+      }
+      .box {
+        background: #1565c0;
+        color: #fff;
+        font-size: 2rem;
+        padding: 32px 0;
+        text-align: center;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        transition: all 0.3s;
+      }
+      .flex-demo {
+        display: flex;
+        gap: 18px;
+        margin-bottom: 10px;
+      }
+      .flex-demo > div {
+        flex: 1;
+        background: #43a047;
+        color: #fff;
+        padding: 20px 0;
+        border-radius: 7px;
+        text-align: center;
+        transition: background 0.3s;
+      }
+
+      /* مثال 1: تغيير الحشو واللون حسب حجم الشاشة */
+      @media (max-width: 600px), (min-width: 700px) {
+        .box {
+          background: #d81b60;
+          font-size: 1.2rem;
+          padding: 16px 0;
+        }
+      }
+
+      /* مثال 2: إخفاء عنصر و إظهار عنصر آخر */
+      .desktop-menu {
+        display: block;
+      }
+      .mobile-menu {
+        display: none;
+      }
+
+      @media (max-width: 700px) {
+        .desktop-menu {
+          display: none;
+        }
+        .mobile-menu {
+          display: block;
+          background: #ff9800;
+          color: #222;
+          padding: 12px;
+          border-radius: 7px;
+          margin-bottom: 10px;
+          text-align: center;
+        }
+      }
+
+      /* مثال 3: تغيير ترتيب العناصر داخل flex حسب الشاشة */
+      @media (max-width: 500px) {
+        .flex-demo {
+          flex-direction: column;
+        }
+        .flex-demo > div {
+          background: #00796b;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>أمثلة عملية: Media Query في CSS</h1>
+
+    <section>
+      <h2>1️⃣ تغيير لون وحجم العنصر حسب حجم الشاشة</h2>
+      <div class="box">
+        هذا العنصر يتغير لونه وحجمه إذا صغّرت الشاشة لأقل من 600px!
+      </div>
+      <p>
+        <strong>شرح:</strong> لاحظ تغيّر اللون والحجم إذا فتحت الصفحة من جوال أو
+        صغّرت عرض المتصفح.
+      </p>
+    </section>
+
+    <section>
+      <h2>2️⃣ إخفاء وإظهار قائمة الجوال</h2>
+      <div class="desktop-menu">
+        قائمة الكمبيوتر (تظهر فقط على الشاشات الكبيرة)
+      </div>
+      <div class="mobile-menu">قائمة الجوال (تظهر فقط على الشاشات الصغيرة)</div>
+      <p>
+        <strong>شرح:</strong> عند تصغير الشاشة أقل من 700px، تختفي القائمة
+        الأولى وتظهر الثانية.
+      </p>
+    </section>
+
+    <section>
+      <h2>3️⃣ تغيير اتجاه العناصر داخل Flexbox</h2>
+      <div class="flex-demo">
+        <div>عنصر 1</div>
+        <div>عنصر 2</div>
+        <div>عنصر 3</div>
+      </div>
+      <p>
+        <strong>شرح:</strong> عناصر Flex تصطف أفقياً بشكل افتراضي، وعند تصغير
+        الشاشة لأقل من 500px تصبح رأسية ويغير لونها.
+      </p>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>تعريفي - مطور ويب مبتدئ</title>
+    <!-- Google Fonts: Almarai -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="container">
+        <span class="brand">Frontend Developer</span>
+
+        <ul class="nav-links">
+          <li><a href="#about">تعريفي</a></li>
+          <li><a href="#skills">التقنيات</a></li>
+          <li><a href="#projects">المشاريع</a></li>
+          <li><a href="#contact">تواصل معي</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+      <div class="hero-content">
+        <img
+          src="https://i.pravatar.cc/150?img=8"
+          alt="صورتي"
+          class="profile-img"
+        />
+        <div>
+          <h1>أهلاً! أنا أحمد</h1>
+          <p>
+            مطور ويب فرونت اند مبتدئ أتعلم <b>HTML</b> و <b>CSS</b> وأطمح لدخول
+            عالم البرمجة باحتراف.
+          </p>
+          <p>أحب بناء مواقع تفاعلية بسيطة، وأسعى دائماً لتطوير مهاراتي!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="skills" id="skills">
+      <h2>التقنيات التي أتعلمها</h2>
+      <div class="skills-list">
+        <div class="skill-card">
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+            alt="HTML Logo"
+            class="skill-img"
+          />
+          <h3>HTML</h3>
+          <p>الأساس لبناء صفحات الويب، يحدد النصوص والعناصر والصور والروابط.</p>
+        </div>
+        <div class="skill-card">
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+            alt="CSS Logo"
+            class="skill-img"
+          />
+          <h3>CSS</h3>
+          <p>
+            تستخدم لتنسيق صفحات الويب من ألوان وخطوط وتوزيع العناصر بشكل جميل
+            وجذاب.
+          </p>
+        </div>
+        <div class="skill-card">
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+            alt="JS Logo"
+            class="skill-img"
+          />
+          <h3>JavaScript</h3>
+          <p>
+            تضيف تفاعلية للموقع مثل الأزرار المنبثقة أو التنقل الديناميكي (لم
+            أستخدمها هنا).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="projects" id="projects">
+      <h2>مشاريعي البسيطة</h2>
+      <ul class="project-list">
+        <li>
+          <img
+            src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?fit=crop&w=400&q=80"
+            alt="مشروع شخصي"
+            class="project-img"
+          />
+          <div>
+            <h4>موقع تعريفي شخصي</h4>
+            <p>صفحة بسيطة أعرّف بها عن نفسي ومهاراتي.</p>
+          </div>
+        </li>
+        <li>
+          <img
+            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?fit=crop&w=400&q=80"
+            alt="مشروع مطعم"
+            class="project-img"
+          />
+          <div>
+            <h4>صفحة هبوط لمطعم</h4>
+            <p>تصميم صفحة ترحب بالزوار وتعرض قائمة الطعام بشكل أنيق.</p>
+          </div>
+        </li>
+        <li>
+          <img
+            src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?fit=crop&w=400&q=80"
+            alt="مشروع تواصل"
+            class="project-img"
+          />
+          <div>
+            <h4>تصميم نموذج تواصل</h4>
+            <p>نموذج تواصل لجمع رسائل الزوار بسهولة.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact" id="contact">
+      <h2>تواصل معي</h2>
+      <form class="contact-form">
+        <input type="text" name="name" placeholder="الاسم" required />
+        <input
+          type="email"
+          name="email"
+          placeholder="البريد الإلكتروني"
+          required
+        />
+        <textarea name="message" placeholder="رسالتك" required></textarea>
+        <button type="submit">إرسال</button>
+      </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        &copy; 2025 مطور ويب مبتدئ. جميع الحقوق محفوظة.
+      </div>
+    </footer>
+  </body>
+</html>
