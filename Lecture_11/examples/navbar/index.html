@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Navbar متجاوب مع قائمة جانبية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav
+      class="bg-blue-700 text-white px-4 py-3 flex justify-between items-center"
+    >
+      <div class="font-bold text-xl">موقعي</div>
+      <!-- روابط على الديسكتوب -->
+      <ul class="hidden md:flex gap-6 font-medium">
+        <li><a href="#" class="hover:underline">الرئيسية</a></li>
+        <li><a href="#" class="hover:underline">الخدمات</a></li>
+        <li><a href="#" class="hover:underline">من نحن</a></li>
+        <li><a href="#" class="hover:underline">تواصل</a></li>
+      </ul>
+      <!-- زر القائمة للموبايل -->
+      <button
+        onclick="openSidebar()"
+        class="md:hidden text-3xl focus:outline-none"
+        aria-label="فتح القائمة"
+      >
+        &#9776;
+      </button>
+    </nav>
+
+    <!-- القائمة الجانبية (Sidebar) -->
+    <div
+      id="sidebar"
+      class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transform translate-x-full transition-transform duration-300 md:hidden"
+    >
+      <div class="flex items-center justify-between px-4 py-4 border-b">
+        <span class="font-bold text-lg text-blue-700">القائمة</span>
+        <button
+          onclick="closeSidebar()"
+          class="text-2xl text-gray-700 hover:text-red-500"
+          aria-label="إغلاق"
+        >
+          &#10005;
+        </button>
+      </div>
+      <ul class="flex flex-col mt-6 gap-4 px-6 font-medium">
+        <li><a href="#" class="hover:text-blue-600">الرئيسية</a></li>
+        <li><a href="#" class="hover:text-blue-600">الخدمات</a></li>
+        <li><a href="#" class="hover:text-blue-600">من نحن</a></li>
+        <li><a href="#" class="hover:text-blue-600">تواصل</a></li>
+      </ul>
+    </div>
+
+    <!-- خلفية شفافة عند فتح القائمة -->
+    <div
+      id="backdrop"
+      onclick="closeSidebar()"
+      class="fixed inset-0 bg-black bg-opacity-30 z-40 hidden md:hidden"
+    ></div>
+
+    <script>
+      function openSidebar() {
+        document.getElementById("sidebar").classList.remove("translate-x-full");
+        document.getElementById("backdrop").classList.remove("hidden");
+      }
+      function closeSidebar() {
+        document.getElementById("sidebar").classList.add("translate-x-full");
+        document.getElementById("backdrop").classList.add("hidden");
+      }
+    </script>
+  </body>
+</html>

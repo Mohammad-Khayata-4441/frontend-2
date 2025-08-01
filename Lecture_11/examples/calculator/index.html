@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>آلة حاسبة بسيطة - JavaScript + Tailwind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
+      <h2 class="text-2xl font-bold text-center mb-6 text-blue-700">
+        آلة حاسبة بسيطة
+      </h2>
+      <form id="calcForm" onsubmit="calculateResult(event)" class="space-y-6">
+        <div class="flex items-center gap-3 justify-between">
+          <input
+            type="number"
+            id="num1"
+            required
+            class="w-1/3 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-center"
+            placeholder="الرقم الأول"
+          />
+
+          <select
+            id="operation"
+            required
+            class="w-16 h-11 text-xl text-center border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
+            <option value="add" selected>+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">×</option>
+            <option value="divide">÷</option>
+          </select>
+
+          <input
+            type="number"
+            id="num2"
+            required
+            class="w-1/3 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-center"
+            placeholder="الرقم الثاني"
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl transition duration-200"
+        >
+          احسب
+        </button>
+      </form>
+    </div>
+
+    <script>
+      function calculateResult(event) {
+        event.preventDefault();
+
+        let num1 = Number(document.getElementById("num1").value);
+        let num2 = Number(document.getElementById("num2").value);
+        let operation = document.getElementById("operation").value;
+        let result;
+
+        if (operation === "add") {
+          result = num1 + num2;
+        } else if (operation === "subtract") {
+          result = num1 - num2;
+        } else if (operation === "multiply") {
+          result = num1 * num2;
+        } else if (operation === "divide") {
+          if (num2 === 0) {
+            alert("لا يمكن القسمة على صفر!");
+            return;
+          }
+          result = num1 / num2;
+        }
+
+        alert("النتيجة: " + result);
+      }
+    </script>
+  </body>
+</html>
