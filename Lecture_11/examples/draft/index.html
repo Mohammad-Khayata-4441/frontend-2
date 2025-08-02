@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Hello world , welcome to js course.</h1>
+  </body>
+
+  <script>
+    // const users = ["ahmad", "ali", "yousef", "sara"];
+
+    // const myArray = [
+    //   "samer",
+    //   () => {
+    //     console.log("hello");
+    //   },
+    // ];
+
+    // let [x, myFun] = myArray;
+
+    // myFun();
+
+    // Array destructuring
+    // let [username, username2] = myArray;
+
+    // Spread operator
+    // const allUsers = [...users, ...myArray];
+
+    // console.log(username, username2);
+    // users.forEach((user, index) => {
+    //   console.log(user, index);
+    // });
+
+    //   console.log("Hello from arrow function");
+
+    const attr = "name";
+
+    const student = {
+      name: "samer",
+      age: 20,
+      department: "IT",
+    };
+
+    const stdGrades = {
+      math: 60,
+      cpp: 80,
+    };
+
+    const studentData = {
+      ...student,
+      ...stdGrades,
+    };
+
+    console.log(Object.keys(studentData));
+    console.log(Object.values(studentData));
+    console.log(Object.entries(studentData));
+
+    // console.log(student[attr], student[attr]);
+  </script>
+</html>
