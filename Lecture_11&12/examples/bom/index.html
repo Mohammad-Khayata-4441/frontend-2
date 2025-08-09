@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 24px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+  <body>
+    <button id="btn">Click me</button>
+  </body>
+
+  <script>
+    const btn = document.getElementById("btn");
+
+    function handleEvent() {
+      //   window.alert("The button is clicked");
+      const isConfirmed = window.confirm("Do you accept");
+
+      if (isConfirmed) {
+        window.alert("thanks for confimration ");
+      }
+    }
+    btn.addEventListener("click", handleEvent);
+  </script>
+</html>

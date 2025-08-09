@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Test Promise</h1>
+
+    <ul id="myUl"></ul>
+
+    <style>
+      .comment {
+        display: flex;
+        border: 1px gray solid;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        padding: 10px;
+        flex-direction: column;
+      }
+    </style>
+
+    <script>
+      function fetchData() {
+        const list = document.getElementById("myUl");
+
+        const ENDPOINT = "https://jsonplaceholder.typicode.com/comments";
+
+        return fetch(ENDPOINT);
+      }
+
+      async function loadData() {
+        try {
+          const res = await fetchData();
+
+          const data = await res.json();
+
+          console.log(data);
+        } catch (er) {
+          console.log();
+        }
+      }
+
+      window.onload = () => {
+        loadData();
+      };
+    </script>
+  </body>
+</html>

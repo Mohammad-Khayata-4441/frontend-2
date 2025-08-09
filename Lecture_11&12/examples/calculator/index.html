@@ -10,7 +10,7 @@
       <h2 class="text-2xl font-bold text-center mb-6 text-blue-700">
         آلة حاسبة بسيطة
       </h2>
-      <form id="calcForm" onsubmit="calculateResult(event)" class="space-y-6">
+      <form id="calcForm" class="space-y-6">
         <div class="flex items-center gap-3 justify-between">
           <input
             type="number"
@@ -49,11 +49,15 @@
     </div>
 
     <script>
+      const form = document.getElementById("calcForm");
+      form.addEventListener("submit", calculateResult);
+
       function calculateResult(event) {
         event.preventDefault();
 
         let num1 = Number(document.getElementById("num1").value);
         let num2 = Number(document.getElementById("num2").value);
+
         let operation = document.getElementById("operation").value;
         let result;
 

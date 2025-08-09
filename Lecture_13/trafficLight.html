@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <title>إشارة مرور بسيطة</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #eee;
+      }
+
+      .traffic-light {
+        background: #222;
+        border-radius: 20px;
+        width: 80px;
+        padding: 20px;
+        box-shadow: 0 4px 16px #8888;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .light {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #444;
+        opacity: 0.3;
+        margin: 0 auto;
+        transition: background 0.2s, opacity 0.2s;
+      }
+      .red.active {
+        background: #e74c3c;
+        opacity: 1;
+      }
+      .yellow.active {
+        background: #f1c40f;
+        opacity: 1;
+      }
+      .green.active {
+        background: #27ae60;
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="traffic-light">
+      <div id="red " class="light red"></div>
+      <div id="yellow" class="light yellow"></div>
+      <div id="green" class="light green"></div>
+    </div>
+
+    <script>
+      // الترتيب: أحمر > أصفر > أخضر > أصفر
+      const sequence = [
+        { color: "red", duration: 5000 }, // 30 ثانية 0
+        { color: "yellow", duration: 1000 }, // 3 1 ثواني
+        { color: "green", duration: 3000 }, // 15 2 ثانية
+      ];
+
+      let current = 0;
+
+      function updateLight() {
+        // إزالة "active" من كل الأضواء
+        document
+          .querySelectorAll(".light")
+          .forEach((light) => light.classList.remove("active"));
+
+        // تفعيل الضوء الحالي
+        const { color, duration } = sequence[current];
+
+        document.getElementById(color).classList.add("active");
+        // جدولة الضوء التالي
+        setTimeout(() => {
+          current = (current + 1) % sequence.length;
+          updateLight();
+        }, duration);
+      }
+
+      updateLight(); // بدء العملية
+    </script>
+  </body>
+</html>

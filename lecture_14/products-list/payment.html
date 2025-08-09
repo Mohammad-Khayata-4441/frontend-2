@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الدفع الإلكتروني</title>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- SweetAlert2 (لإشعار النجاح) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body class="bg-gray-50 text-gray-900">
+    <header class="bg-white border-b">
+      <div
+        class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between"
+      >
+        <h1 class="font-bold text-xl">الدفع الإلكتروني</h1>
+        <a href="/" class="text-indigo-600 hover:underline">عودة للمتجر</a>
+      </div>
+    </header>
+
+    <main class="py-10">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-2xl shadow p-6 sm:p-8">
+          <h2 class="text-2xl font-bold mb-6">
+            بيانات البطاقة (Visa/MasterCard)
+          </h2>
+
+          <!-- فورم بدون أي فاليديشن (تمرين) -->
+          <form id="payment-form" class="space-y-6">
+            <!-- معلومات المشتري (اختياري للتمرين) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium mb-1"
+                  >الاسم الكامل على البطاقة</label
+                >
+                <input
+                  name="cardName"
+                  type="text"
+                  class="w-full rounded-lg border px-3 py-2 outline-none focus:ring"
+                  placeholder="مثال: Ahmed Ali"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1"
+                  >البريد الإلكتروني (للتواصل)</label
+                >
+                <input
+                  name="email"
+                  type="email"
+                  class="w-full rounded-lg border px-3 py-2 outline-none focus:ring"
+                  placeholder="name@example.com"
+                />
+              </div>
+            </div>
+
+            <!-- بيانات البطاقة -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div class="sm:col-span-2">
+                <label class="block text-sm font-medium mb-1"
+                  >رقم البطاقة</label
+                >
+                <input
+                  name="cardNumber"
+                  type="text"
+                  inputmode="numeric"
+                  class="w-full rounded-lg border px-3 py-2 outline-none focus:ring"
+                  placeholder="4242 4242 4242 4242"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1">CVV</label>
+                <input
+                  name="cvv"
+                  type="password"
+                  inputmode="numeric"
+                  maxlength="4"
+                  class="w-full rounded-lg border px-3 py-2 outline-none focus:ring"
+                  placeholder="123"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-sm font-medium mb-1"
+                  >تاريخ الانتهاء (شهر)</label
+                >
+                <input
+                  name="expMonth"
+                  type="text"
+                  inputmode="numeric"
+                  class="w-full rounded-lg border px-3 py-2 outline-none focus:ring"
+                  placeholder="MM"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1"
+                  >تاريخ الانتهاء (سنة)</label
+                >
+                <input
+                  name="expYear"
+                  type="text"
+                  inputmode="numeric"
+                  class="w-full rounded-lg border px-3 py-2 outline-none focus:ring"
+                  placeholder="YY"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1">البلد</label>
+                <input
+                  name="country"
+                  type="text"
+                  class="w-full rounded-lg border px-3 py-2 outline-none focus:ring"
+                  placeholder="Poland"
+                />
+              </div>
+            </div>
+
+            <!-- عنوان الشحن (تمرين فقط) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium mb-1">العنوان</label>
+                <input
+                  name="address"
+                  type="text"
+                  class="w-full rounded-lg border px-3 py-2 outline-none focus:ring"
+                  placeholder="Street address"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1">المدينة</label>
+                <input
+                  name="city"
+                  type="text"
+                  class="w-full rounded-lg border px-3 py-2 outline-none focus:ring"
+                  placeholder="City"
+                />
+              </div>
+            </div>
+
+            <div class="flex items-center justify-end gap-3 pt-2">
+              <a href="/" class="rounded-lg border px-4 py-2 hover:bg-gray-50"
+                >إلغاء</a
+              >
+              <button
+                type="submit"
+                class="rounded-lg bg-indigo-600 text-white px-5 py-2.5 font-medium hover:bg-indigo-700 transition"
+              >
+                إنهاء الدفع
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- سكربت الصفحة -->
+    <script type="module" src="./src/payment.js"></script>
+  </body>
+</html>

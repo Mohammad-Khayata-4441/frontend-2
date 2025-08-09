@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <ul id="users">
+        <!-- <li>mohammad</li> -->
+      </ul>
+    </div>
+
+    <style>
+      .clicked-item {
+        background-color: #cccccc;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+      }
+    </style>
+
+    <script>
+      const users = [
+        {
+          name: "Ali",
+          grade: 90,
+          id: 1,
+        },
+        {
+          name: "Sara",
+          grade: 80,
+          id: 2,
+        },
+        {
+          name: "Khaled",
+          grade: 55,
+          id: 3,
+        },
+      ];
+      const ul = document.getElementById("users");
+
+      users.forEach((user, index) => {
+        const newItem = document.createElement("li");
+
+        newItem.style.display = "flex";
+        newItem.style.justifyContent = "space-between";
+        newItem.style.marginTop = "10px";
+        newItem.style.padding = "10px";
+        newItem.style.border = "1px solid #ccc";
+        newItem.style.borderRadius = "5px";
+
+        newItem.onclick = () => {
+          newItem.classList.add("clicked-item");
+          console.log(user.name);
+        };
+
+        newItem.ondblclick = () => {
+          newItem.classList.remove("clicked-item");
+        };
+
+        const itemGrade = document.createElement("span");
+
+        itemGrade.style.backgroundColor = user.grade >= 60 ? "green" : "red";
+        itemGrade.innerText = user.grade;
+
+        itemGrade.style.padding = "5px 10px";
+        itemGrade.style.color = "white";
+        itemGrade.style.borderRadius = "5px";
+
+        newItem.innerText = user.name;
+
+        newItem.appendChild(itemGrade);
+
+        ul.appendChild(newItem);
+      });
+    </script>
+  </body>
+</html>

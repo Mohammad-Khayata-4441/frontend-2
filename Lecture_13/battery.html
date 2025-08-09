@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <title>مؤشر البطارية</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background: #f0f0f0;
+      }
+      .battery-container {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+      .battery {
+        width: 120px;
+        height: 48px;
+        border: 3px solid #333;
+        border-radius: 8px;
+        position: relative;
+        background: #fff;
+        box-shadow: 0 2px 10px #aaa2;
+        overflow: hidden;
+      }
+      .battery-level {
+        height: 100%;
+        width: 50%; /* قيمة مبدئية */
+        background: linear-gradient(90deg, #43ea41 0%, #a3ff6d 100%);
+        transition: width 0.4s, background 0.4s;
+      }
+      .battery-tip {
+        width: 12px;
+        height: 28px;
+        background: #333;
+        border-radius: 3px;
+        position: absolute;
+        top: 10px;
+        right: -15px;
+      }
+      .battery-label {
+        font-size: 1.5rem;
+        font-weight: bold;
+        width: 50px;
+        text-align: center;
+      }
+      button {
+        padding: 8px 18px;
+        border-radius: 8px;
+        border: none;
+        background: #36a;
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.2s;
+      }
+      button:disabled {
+        background: #aaa;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="battery-container">
+      <div class="battery">
+        <div class="battery-level" id="level"></div>
+        <div class="battery-tip"></div>
+      </div>
+      <span class="battery-label" id="label">50%</span>
+    </div>
+
+    <button id="charge-btn">بدء الشحن</button>
+
+    <script>
+      let charge = 50;
+
+      let charging = false,
+        draining = false;
+
+      let chargeInterval, drainInterval;
+
+      const level = document.getElementById("level");
+      const label = document.getElementById("label");
+      const chargeBtn = document.getElementById("charge-btn");
+
+      function updateBatteryUI() {
+        level.style.width = charge + "%";
+        label.textContent = charge + "%";
+
+        // اللون يتغير حسب الشحن
+        if (charge >= 70) {
+          level.style.background =
+            "linear-gradient(90deg, #43ea41 0%, #a3ff6d 100%)"; // أخضر
+        } else if (charge >= 30) {
+          level.style.background =
+            "linear-gradient(90deg, #ffd800 0%, #ffe680 100%)"; // أصفر
+        } else {
+          level.style.background =
+            "linear-gradient(90deg, #ff5858 0%, #ffbfa5 100%)"; // أحمر
+        }
+      }
+
+      function startCharging() {
+        if (charging || charge >= 100) return;
+
+        charging = true;
+        chargeBtn.disabled = true;
+
+        clearInterval(drainInterval);
+
+        chargeInterval = setInterval(() => {
+          if (charge < 100) {
+            charge = Math.min(100, charge + 5);
+            updateBatteryUI();
+          }
+          if (charge >= 100) {
+            clearInterval(chargeInterval);
+            charging = false;
+            startDraining();
+          }
+        }, 3000);
+      }
+
+      function startDraining() {
+        if (draining) return;
+
+        draining = true;
+        chargeBtn.disabled = false;
+
+        drainInterval = setInterval(() => {
+          if (charge > 0) {
+            charge = Math.max(0, charge - 1);
+            updateBatteryUI();
+          }
+          if (charge <= 0) {
+            clearInterval(drainInterval);
+            draining = false;
+          }
+        }, 1000);
+      }
+
+      chargeBtn.onclick = startCharging;
+
+      updateBatteryUI();
+    </script>
+  </body>
+</html>

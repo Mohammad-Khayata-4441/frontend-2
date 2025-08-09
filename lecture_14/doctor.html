@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>عيادة — حجز المواعيد</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f6f7fb;
+        margin: 0;
+        padding: 24px;
+      }
+      h1 {
+        margin: 0 0 16px;
+      }
+      .app {
+        max-width: 1000px;
+        margin: auto;
+      }
+      .add-card {
+        background: #fff;
+        padding: 16px;
+        border-radius: 12px;
+        box-shadow: 0 4px 14px #00000012;
+        margin-bottom: 18px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: end;
+      }
+      .add-card label {
+        font-size: 12px;
+        color: #666;
+        display: block;
+        margin-bottom: 6px;
+      }
+      .add-card input {
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+      .add-card button {
+        padding: 10px 16px;
+        border: none;
+        border-radius: 8px;
+        background: #2d8f61;
+        color: #fff;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .columns {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      .col {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 14px #00000012;
+      }
+      .col header {
+        padding: 12px 14px;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .badge {
+        background: #f0f3f9;
+        color: #333;
+        font-size: 12px;
+        padding: 3px 8px;
+        border-radius: 999px;
+      }
+      .list {
+        list-style: none;
+        margin: 0;
+        padding: 10px;
+        min-height: 140px;
+      }
+      .item {
+        border: 1px solid #eee;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .title {
+        font-weight: bold;
+      }
+      .meta {
+        font-size: 12px;
+        color: #666;
+      }
+      .actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        border: none;
+        border-radius: 8px;
+        padding: 6px 10px;
+        cursor: pointer;
+        font-size: 13px;
+      }
+      .btn-wait {
+        background: #e8f4ff;
+      }
+      .btn-proc {
+        background: #fff3cd;
+      }
+      .btn-back {
+        background: #f0f0f0;
+      }
+      .btn-done {
+        background: #ffdede;
+      }
+      .muted {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+      .empty {
+        color: #888;
+        font-size: 13px;
+        text-align: center;
+        padding: 18px 8px;
+      }
+      @media (max-width: 900px) {
+        .columns {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <h1>تطبيق حجز المواعيد — عيادة</h1>
+
+      <!-- بطاقة إضافة موعد -->
+      <div class="add-card">
+        <div>
+          <label for="patientName">اسم المريض</label>
+          <input id="patientName" type="text" placeholder="مثال: أحمد علي" />
+        </div>
+        <div>
+          <label for="appointmentTime">موعد الزيارة</label>
+          <input id="appointmentTime" type="datetime-local" />
+        </div>
+        <button id="addBtn">إضافة الموعد</button>
+      </div>
+
+      <!-- الأعمدة -->
+      <div class="columns">
+        <section class="col" data-col="upcoming">
+          <header>
+            <div>مواعيد قادمة</div>
+            <span class="badge" id="count-upcoming">0</span>
+          </header>
+          <ul class="list" id="list-upcoming"></ul>
+        </section>
+
+        <section class="col" data-col="waiting">
+          <header>
+            <div>قيد الانتظار</div>
+            <span class="badge" id="count-waiting">0</span>
+          </header>
+          <ul class="list" id="list-waiting"></ul>
+        </section>
+
+        <section class="col" data-col="processing">
+          <header>
+            <div>قيد المعالجة</div>
+            <span class="badge" id="count-processing">0</span>
+          </header>
+          <ul class="list" id="list-processing"></ul>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      // الحالة العامة
+      const state = {
+        items: [], // {id, name, timeISO, status: 'upcoming'|'waiting'|'processing'}
+      };
+
+      // عناصر الواجهة
+      const nameInput = document.getElementById("patientName");
+      const timeInput = document.getElementById("appointmentTime");
+      const addBtn = document.getElementById("addBtn");
+
+      const lists = {
+        upcoming: document.getElementById("list-upcoming"),
+        waiting: document.getElementById("list-waiting"),
+        processing: document.getElementById("list-processing"),
+      };
+
+      const counters = {
+        upcoming: document.getElementById("count-upcoming"),
+        waiting: document.getElementById("count-waiting"),
+        processing: document.getElementById("count-processing"),
+      };
+
+      // أدوات مساعدة
+      const fmtDate = (iso) => {
+        if (!iso) return "";
+        const d = new Date(iso);
+        // عرض مبسط: YYYY-MM-DD HH:mm
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, "0");
+        const day = String(d.getDate()).padStart(2, "0");
+        const hh = String(d.getHours()).padStart(2, "0");
+        const mm = String(d.getMinutes()).padStart(2, "0");
+        return `${y}-${m}-${day} ${hh}:${mm}`;
+      };
+
+      const hasProcessing = () =>
+        state.items.some((x) => x.status === "processing");
+
+      const addAppointment = (name, timeISO) => {
+        state.items.push({
+          id: crypto.randomUUID(),
+          name,
+          timeISO,
+          status: "upcoming",
+        });
+        render();
+      };
+
+      const moveTo = (id, nextStatus) => {
+        const item = state.items.find((x) => x.id === id);
+        if (!item) return;
+
+        if (nextStatus === "processing" && hasProcessing()) {
+          alert("يوجد مريض قيد المعالجة بالفعل، لا يمكن إضافة آخر.");
+          return;
+        }
+
+        item.status = nextStatus;
+        render();
+      };
+
+      const removeItem = (id) => {
+        const i = state.items.findIndex((x) => x.id === id);
+        if (i >= 0) {
+          state.items.splice(i, 1);
+          render();
+        }
+      };
+
+      // بناء عنصر مهمة في الواجهة
+      const buildItem = (item) => {
+        const li = document.createElement("li");
+        li.className = "item";
+
+        const title = document.createElement("div");
+        title.className = "title";
+        title.textContent = item.name;
+
+        const meta = document.createElement("div");
+        meta.className = "meta";
+        meta.textContent = `الموعد: ${fmtDate(item.timeISO)}`;
+
+        const actions = document.createElement("div");
+        actions.className = "actions";
+
+        // أزرار التنقّل بين القوائم
+        if (item.status !== "waiting") {
+          const btnWait = document.createElement("button");
+          btnWait.className = "btn btn-wait";
+          btnWait.textContent = "إلى قيد الانتظار";
+          btnWait.onclick = () => moveTo(item.id, "waiting");
+          actions.appendChild(btnWait);
+        }
+
+        if (item.status !== "processing") {
+          const btnProc = document.createElement("button");
+          btnProc.className = "btn btn-proc";
+          btnProc.textContent = "إلى قيد المعالجة";
+          // تعطيل بصري لو فيه مريض قيد المعالجة
+          if (hasProcessing()) {
+            btnProc.classList.add("muted");
+            btnProc.onclick = () =>
+              alert("يوجد مريض قيد المعالجة بالفعل، لا يمكن إضافة آخر.");
+          } else {
+            btnProc.onclick = () => moveTo(item.id, "processing");
+          }
+          actions.appendChild(btnProc);
+        }
+
+        // زر إرجاع (اختياري) من الانتظار/المعالجة إلى القادمة
+        if (item.status !== "upcoming") {
+          const btnBack = document.createElement("button");
+          btnBack.className = "btn btn-back";
+          btnBack.textContent = "إرجاع إلى القادمة";
+          btnBack.onclick = () => moveTo(item.id, "upcoming");
+          actions.appendChild(btnBack);
+        }
+
+        // إنهاء/حذف نهائي
+        const btnDone = document.createElement("button");
+        btnDone.className = "btn btn-done";
+        btnDone.textContent = "إنهاء (حذف)";
+        btnDone.onclick = () => removeItem(item.id);
+        actions.appendChild(btnDone);
+
+        li.appendChild(title);
+        li.appendChild(meta);
+        li.appendChild(actions);
+        return li;
+      };
+
+      // إعادة الرسم
+      const render = () => {
+        // تفريغ القوائم
+        Object.values(lists).forEach((ul) => (ul.innerHTML = ""));
+
+        // تعبئة حسب الحالة
+        const groups = {
+          upcoming: state.items.filter((x) => x.status === "upcoming"),
+          waiting: state.items.filter((x) => x.status === "waiting"),
+          processing: state.items.filter((x) => x.status === "processing"),
+        };
+
+        Object.entries(groups).forEach(([status, arr]) => {
+          counters[status].textContent = arr.length;
+          if (arr.length === 0) {
+            const empty = document.createElement("div");
+            empty.className = "empty";
+            empty.textContent = "لا توجد عناصر";
+            lists[status].appendChild(empty);
+          } else {
+            arr.forEach((item) => lists[status].appendChild(buildItem(item)));
+          }
+        });
+      };
+
+      // إضافة موعد جديد
+      addBtn.onclick = () => {
+        const name = nameInput.value.trim();
+        const timeISO = timeInput.value;
+        if (!name) {
+          alert("الرجاء إدخال اسم المريض.");
+          return;
+        }
+        if (!timeISO) {
+          alert("الرجاء تحديد موعد الزيارة.");
+          return;
+        }
+        addAppointment(name, timeISO);
+        nameInput.value = "";
+        timeInput.value = "";
+        nameInput.focus();
+      };
+
+      // Enter في حقل الاسم يضيف الموعد
+      nameInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") addBtn.click();
+      });
+
+      render();
+    </script>
+  </body>
+</html>
